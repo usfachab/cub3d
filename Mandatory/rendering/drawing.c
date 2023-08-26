@@ -6,22 +6,11 @@
 /*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:21:37 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/26 10:03:57 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/26 20:36:42 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
-
-int	ft_strlen(char *str)
-{
-	int i = 0;
-	if (!str)
-		return (0);
-	while(str[i])
-		i++;
-	return i;
-}
 
 void my_mlx_pixel_put(t_config *config, int x, int y, int color)
 {
@@ -31,29 +20,52 @@ void my_mlx_pixel_put(t_config *config, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void draw_wall(t_config *config, double from, double to, int j)
+void draw_wall(t_config *config, t_set_tex *tex_values)
 {
-	int	i;
-
-	i = 0;
-	if (config->j >= WIDTH)
-		config->j = 0;
-	while (i < from)
-	{
-		my_mlx_pixel_put(config, j, i, 0xEFDEAB);
-		i++;
-	}
-	while (i < to)
-	{
-		my_mlx_pixel_put(config, j, i, 0xFFEEEE);
-		i++;
-	}
-	while (i < HIGHT)
-	{
-		my_mlx_pixel_put(config, j, i, 0x0F0FF0);
-		i++;
-	}
+    int i = tex_values->i;
+    double from = tex_values->from;
+    double to = from + tex_values->high;
+	config->color = 0;
+    while (i < from && i < HIGHT)
+    {
+        my_mlx_pixel_put(config, tex_values->x, i, config->ceiling_rgb);
+        i++;
+    }
+    while (i < to && i < HIGHT)
+    {
+		//you must call your function here and set the value on config color so you must return unsigned int
+        my_mlx_pixel_put(config, tex_values->x, i, config->color);
+        i++;
+    }
+    while (i < HIGHT)
+    {
+        my_mlx_pixel_put(config, tex_values->x, i, config->floor_rgb);
+        i++;
+    }
 }
+
+
+// void draw_wall(t_config *config, double from, double to, int j)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (i < from && i < HIGHT)
+// 	{
+// 		my_mlx_pixel_put(config, j, i, 0xEFDEAB);
+// 		i++;
+// 	}
+// 	while (i < to && i < HIGHT)
+// 	{
+// 		my_mlx_pixel_put(config, j, i, config->color);
+// 		i++;
+// 	}
+// 	while (i < HIGHT)
+// 	{
+// 		my_mlx_pixel_put(config, j, i, 0x0F0FF0);
+// 		i++;
+// 	}
+// }
 
 void clear_window(t_config *config)
 {
@@ -89,7 +101,8 @@ void render_rays(t_config *config, t_player *player)
 {
 	int i = 0;
 	double ray_angle;
-	while(i < 1000)
+	config->j = 0;
+	while(i < WIDTH)
 	{
 		ray_angle = player->direction + (FOV / 2) - ((FOV / 1000) * i);
 		cast_ray(config, player, ray_angle, (FOV / 2) - ((FOV / 1000) * i));

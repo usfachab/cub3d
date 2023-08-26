@@ -6,7 +6,7 @@
 /*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 21:41:17 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/26 10:02:49 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/26 17:03:49 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,9 @@ typedef struct  s_config
 	int			floor_rgb;
 	int			ceiling_rgb;
 	int			fd;
-	int last_mouse_x;
-    int mini_map_scale;
+	int			last_mouse_x;
+    int			mini_map_scale;
+	int			color;
 }	t_config;
 
 typedef struct s_plit
@@ -137,7 +138,7 @@ typedef struct s_intersection {
 
 
 // libft
-int	ft_strlen(char *str);
+// int	ft_strlen(char *str);
 
 // drawing
 void    my_mlx_pixel_put(t_config *config, int x, int y, int color);
@@ -165,11 +166,37 @@ void    move_player(t_player *player, t_map *map, double direction);
 int     mouse_move(int x, int y, void *param);
 
 // utils
-void    free_map(t_map *map);
-void	read_map(char *filename, t_map *map);
-void    handle_error(char *message);
-char    **ft_split(char *str, int row_len, int col_len);
-void    calculate_map_size(char *buffer, int bytes_read, int *row_len, int *col_len);
+// void    free_map(t_map *map);
+// void	read_map(char *filename, t_map *map);
+// void    handle_error(char *message);
+// char    **ft_split(char *str, int row_len, int col_len);
+// void    calculate_map_size(char *buffer, int bytes_read, int *row_len, int *col_len);
 void	init_ray(t_ray *ray, t_player *player, double angle);
+
+
+
+// ! PARSING
+/*--------------- UTILS -----------------*/
+int			ft_strlen(const char *str);
+char		*ft_strdup(const char *s1);
+char		*ft_strjoin(char *s1, const char *s2);
+char		**ft_split(char *str, char *del);
+int			count_word(const char *string, char *delim);
+char		*get_line(int fd);
+void		external_error(char *str, int errnum, char **ptr);
+char		*ft_strtrim(char *str);
+int			ft_strcmp(char *s1, char *s2);
+long		ft_atoi(char *str);
+/*--------------- TEXTURES ----------------*/
+int			parsing_texture(t_config *c, char *file_name);
+char		*store_texture(char *texture, char *value, t_config *config);
+int			incomplete_inst(t_config *config);
+int			valid_color_schema(char *str);
+void		start_converting(int *arr, char *str, int *rgb);
+int			setup_texture(t_config config);
+/*--------------- MAP ---------------------*/
+int			parsing_map(t_config *config);
+void		ft_bspace(void *s, int n);
+t_config	initialize_game(char *filename);
 
 #endif

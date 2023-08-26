@@ -6,7 +6,7 @@
 /*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 13:25:41 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/26 10:15:40 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/26 20:28:10 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 # include <math.h>
 # include <limits.h>
 
-// !RENDRING
 # define CELL_SIZE 40
 # define PLAYER_SIZE 10
 # define MOVE_SPEED 10
@@ -77,6 +76,16 @@ typedef struct s_map
 	int		col_len;
 }	t_map;
 
+typedef struct s_set_tex
+{
+	double		high; //hight of the wall
+	double		from; //begin of the wall
+	double		x; //cordonate of the wall on x
+	double		y; //cordonate of the wall on y
+	int			i; //that used in draw_wall
+	t_texture	*current_texture; //texture that will used
+}	t_set_tex;
+
 typedef struct  s_config
 {
 	t_texture	nt;
@@ -102,6 +111,7 @@ typedef struct  s_config
 	int			floor_rgb;
 	int			ceiling_rgb;
 	int			fd;
+	int			color;
 }	t_config;
 
 
@@ -123,14 +133,15 @@ typedef struct s_intersection {
 
 
 //libft
-int			ft_strlen(char *str);
+// int			ft_/strlen(char *str);
 
 //drawing
 void		my_mlx_pixel_put(t_config *config, int x, int y, int color);
 void		clear_window(t_config *config);
 void		render_map(t_config *config, t_map *map);
 void		draw_player(t_config *config, t_player *player);
-void		draw_wall(t_config *config, double from, double to, int j);
+// void		draw_wall(t_config *config, double from, double to, int j);
+void draw_wall(t_config *config, t_set_tex *tex_values);
 
 //ray_casting
 void		cast_ray(t_config *config, t_player *player, double angle, double t);
@@ -150,14 +161,32 @@ bool		is_valid_position(t_map *map, int x, int y);
 void		move_player(t_player *player, t_map *map, double direction);
 void		free_map(t_map *map);
 int			initialize_graphics(t_config *config);
-
-//main function and utils
 void		init_ray(t_ray *ray, t_player *player, double angle);
-void		init_ray(t_ray *ray, t_player *player, double angle);
-void		initialize_game(t_config *config, char *map_file);
-void		handle_error(char *message);
-char		**ft_split(char *str, int row_len, int col_len);
-void		calculate_map_size(char *buffer, int bytes_read, int *row_len, int *col_len);
-void		read_map(char *filename, t_map *map);
 
+
+// ! PARSING
+/*--------------- UTILS -----------------*/
+int			ft_strlen(const char *str);
+char		*ft_strdup(const char *s1);
+char		*ft_strjoin(char *s1, const char *s2);
+char		**ft_split(char *str, char *del);
+int			count_word(const char *string, char *delim);
+char		*get_line(int fd);
+void		external_error(char *str, int errnum, char **ptr);
+char		*ft_strtrim(char *str);
+int			ft_strcmp(char *s1, char *s2);
+long		ft_atoi(char *str);
+/*--------------- TEXTURES ----------------*/
+int			parsing_texture(t_config *c, char *file_name);
+char		*store_texture(char *texture, char *value, t_config *config);
+int			incomplete_inst(t_config *config);
+int			valid_color_schema(char *str);
+void		start_converting(int *arr, char *str, int *rgb);
+int			setup_texture(t_config config);
+/*--------------- MAP ---------------------*/
+int			parsing_map(t_config *config);
+void		ft_bspace(void *s, int n);
+t_config	initialize_game(char *filename);
+
+void	free_config_resources(t_config *config);
 #endif

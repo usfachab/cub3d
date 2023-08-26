@@ -3,18 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   util.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 10:15:35 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/23 10:22:51 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/26 10:57:47 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pars.h"
+#include "../../includes/cub3d.h"
 
-void	external_error(char *str, int errnum)
+void	external_error(char *str, int errnum, char **ptr)
 {
 	printf("Error: %s\n", str);
+	while (ptr && *ptr)
+	{
+		free(*ptr);
+		ptr++;
+	}
 	exit (errnum);
 }
 

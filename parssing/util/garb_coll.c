@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   garb_coll.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 19:03:50 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/23 19:14:49 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/26 10:57:47 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pars.h"
+#include "../../includes/cub3d.h"
 
 
 void	*gc_malloc(size_t size, t_list **lst)

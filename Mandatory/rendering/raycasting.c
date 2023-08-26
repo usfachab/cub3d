@@ -6,7 +6,7 @@
 /*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:31:54 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/26 10:04:30 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/26 20:34:46 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,9 @@ void find_horizontal_intersection(t_config *config, t_ray ray, double angle, t_i
 	{
 		if (xinter < 0 || yinter < 0 || xinter >= config->map.col_len * CELL_SIZE || yinter >= config->map.row_len * CELL_SIZE)
 			break ;
-		if (stepy < 0 && config->map.map[(int)yinter/ CELL_SIZE - 1][(int)xinter / CELL_SIZE] == '1')
+		if (config->map.map[(int)yinter/ CELL_SIZE][(int)xinter / CELL_SIZE] == '1')
 			break ;
-		else if (config->map.map[(int)yinter/ CELL_SIZE][(int)xinter / CELL_SIZE] == '1')
+		if (stepy < 0 && config->map.map[(int)yinter/ CELL_SIZE - 1][(int)xinter / CELL_SIZE] == '1')
 			break ;
 		xinter += stepx;
 		yinter += stepy;
@@ -76,7 +76,7 @@ void find_horizontal_intersection(t_config *config, t_ray ray, double angle, t_i
 							(ray.ray_y - horizontal->y) * (ray.ray_y - horizontal->y)); 
 }
 
-void find_vertical_intersection(t_config *config, t_ray ray, double angle, t_intersection *vertical)
+void	find_vertical_intersection(t_config *config, t_ray ray, double angle, t_intersection *vertical)
 {
     double	yinter;
 	double	xinter;
@@ -96,12 +96,14 @@ void find_vertical_intersection(t_config *config, t_ray ray, double angle, t_int
     yinter = ray.ray_y + (ray.ray_x - xinter) * tan(angle);
     while (1)
     {
-		if (xinter < 0 || yinter < 0 || xinter >= config->map.col_len * CELL_SIZE || yinter >= config->map.row_len * CELL_SIZE)
+		if (xinter < 0 || yinter < 0 || xinter >= config->map.col_len * CELL_SIZE
+			|| yinter >= config->map.row_len * CELL_SIZE)
 			break ;
+		
+		if (config->map.map[(int)yinter/ CELL_SIZE][(int)xinter / CELL_SIZE] == '1')
+			break;
 		if (stepx < 0 && config->map.map[(int)yinter / CELL_SIZE][(int)xinter / CELL_SIZE - 1] == '1')
 			break ;
-		else if (config->map.map[(int)yinter/ CELL_SIZE][(int)xinter / CELL_SIZE] == '1')
-			break;
         xinter += stepx;
         yinter += stepy;
     }
@@ -113,27 +115,177 @@ void find_vertical_intersection(t_config *config, t_ray ray, double angle, t_int
 
 void cast_ray(t_config *config, t_player *player, double angle, double t)
 {
-	double	from;
-	double	to;
-	double	hight;
-	t_ray ray;
-	t_intersection horizontal, vertical;
+    // double from;
+    // double to;
+    t_ray ray;
+    t_intersection horizontal, vertical;
+    // t_texture *current_texture;
 
-	angle = remainder(angle, M_PI * 2);
-	if (angle < 0)
-		angle += 2 * M_PI;
-	// Assuming you have an init_ray function
-	init_ray(&ray, player, angle);
-	initialize_intersections(&horizontal, &vertical);
-	find_horizontal_intersection(config, ray, angle, &horizontal);
-	find_vertical_intersection(config, ray, angle, &vertical);
-	horizontal.distance *= cos(t);
-	vertical.distance *= cos(t);
-	if (horizontal.distance < vertical.distance)
-		hight = get_hight(horizontal.distance);
-	else
-		hight = get_hight(vertical.distance);
-	from_to(&from, &to, hight);
-	// Assuming you have a draw_wall function
-	draw_wall(config, from, to, config->j++);
+    angle = remainder(angle, M_PI * 2);
+    if (angle < 0)
+        angle += 2 * M_PI;
+
+    init_ray(&ray, player, angle);
+    initialize_intersections(&horizontal, &vertical);
+    find_horizontal_intersection(config, ray, angle, &horizontal);
+    find_vertical_intersection(config, ray, angle, &vertical);
+    horizontal.distance *= cos(t);
+    vertical.distance *= cos(t);
+    t_set_tex tex_values;
+    tex_values.x = config->j++;
+    tex_values.y = 0; // You can set this value based on your logic
+    tex_values.i = 0; // Starting value
+    if (horizontal.distance < vertical.distance)
+    {
+        tex_values.high = get_hight(horizontal.distance);
+        tex_values.from = (HIGHT / 2) - tex_values.high / 2;
+        if (sin(angle) > 0)
+            tex_values.current_texture = &config->nt; // North
+        else
+            tex_values.current_texture = &config->st; // South
+    }
+    else
+    {
+        tex_values.high = get_hight(vertical.distance);
+        tex_values.from = (HIGHT / 2) - tex_values.high / 2;
+        if (cos(angle) > 0)
+            tex_values.current_texture = &config->wt; // West
+        else
+            tex_values.current_texture = &config->et; // East
+    }
+    draw_wall(config, &tex_values);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// void cast_ray(t_config *config, t_player *player, double angle, double t)
+// {
+//     double from;
+//     double to;
+//     double hight;
+//     t_ray ray;
+//     t_intersection horizontal, vertical;
+//     t_texture *current_texture;
+
+//     angle = remainder(angle, M_PI * 2);
+//     if (angle < 0)
+//         angle += 2 * M_PI;
+
+//     init_ray(&ray, player, angle);
+//     initialize_intersections(&horizontal, &vertical);
+//     find_horizontal_intersection(config, ray, angle, &horizontal);
+//     find_vertical_intersection(config, ray, angle, &vertical);
+
+//     horizontal.distance *= cos(t);
+//     vertical.distance *= cos(t);
+
+//     if (horizontal.distance < vertical.distance)
+//     {
+//         hight = get_hight(horizontal.distance);
+//         if (sin(angle) > 0)
+//             current_texture = &config->nt; // North
+//         else
+//             current_texture = &config->st; // South
+//     }
+//     else
+//     {
+//         hight = get_hight(vertical.distance);
+//         if (cos(angle) > 0)
+//             current_texture = &config->wt; // West
+//         else
+//             current_texture = &config->et; // East
+//     }
+//     from_to(&from, &to, hight);
+// 	draw_wall(config, from, to, config->j++);
+// }
+
+// void set_texture_values(t_set_tex *tex, double high, double from, double x, double y, int i, t_texture *current_texture)
+// {
+//     tex->high = high;
+//     tex->from = from;
+//     tex->x = x;
+//     tex->y = y;
+//     tex->i = i;
+//     tex->current_texture = current_texture;
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// void cast_ray(t_config *config, t_player *player, double angle, double t)
+// {
+// 	double	from;
+// 	double	to;
+// 	double	hight;
+// 	t_ray ray;
+// 	t_intersection horizontal, vertical;
+
+// 	angle = remainder(angle, M_PI * 2);
+// 	if (angle < 0)
+// 		angle += 2 * M_PI;
+// 	init_ray(&ray, player, angle);
+// 	printf("%f ====%f\n", ray.ray_x , ray.ray_y);
+// 	initialize_intersections(&horizontal, &vertical);
+// 	find_horizontal_intersection(config, ray, angle, &horizontal);
+// 	find_vertical_intersection(config, ray, angle, &vertical);
+// 	horizontal.distance *= cos(t);
+// 	vertical.distance *= cos(t);
+//     if (horizontal.distance < vertical.distance)
+//     {
+//         hight = get_hight(horizontal.distance);
+//         if (sin(angle) > 0)
+//             config->color = 0xFF0000; // North - Red
+//         else
+//             config->color = 0x00FF00; // South - Green
+//     }
+//     else
+//     {
+//         hight = get_hight(vertical.distance);
+//         if (cos(angle) > 0)
+//             config->color = 0; // West - black
+//         else
+//             config->color = 0xFFFF00; // East - Yellow
+//     }
+//     from_to(&from, &to, hight);
+// 	draw_wall(config, from, to, config->j++);
+// }

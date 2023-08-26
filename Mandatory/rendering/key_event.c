@@ -6,7 +6,7 @@
 /*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:39:49 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/26 10:04:18 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/26 16:51:36 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void move_player(t_player *player, t_map *map, double direction)
 
 	new_x = player->x + cos(direction) * MOVE_SPEED;
 	new_y = player->y - sin(direction) * MOVE_SPEED;
-	
 	if (is_valid_position(map, new_x, new_y)
 		&& is_valid_position(map, new_x, player->y)
 		&& is_valid_position(map, player->x, new_y))
@@ -64,14 +63,4 @@ void move_player(t_player *player, t_map *map, double direction)
 		player->x = new_x;
 		player->y = new_y;
 	}
-}
-
-void free_map(t_map *map)
-{
-	int	i;
-
-	i = 0;
-    while (i < map->row_len)
-        free(map->map[i++]);
-    free(map->map);
 }

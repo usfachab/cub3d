@@ -6,7 +6,7 @@
 /*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 17:24:15 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/26 10:03:43 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/26 17:03:18 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,24 @@ void my_mlx_pixel_put(t_config *config, int x, int y, int color)
 
 void draw_wall(t_config *config, double from, double to, int j)
 {
-    int i = 0;
-    if (config->j >= WIDTH)
-        config->j = 0;
-    while (i < from)
-    {
-        my_mlx_pixel_put(config, j, i, 0xEFDEAB);
-        i++;
-    }
-    while (i < to)
-    {
-        my_mlx_pixel_put(config, j, i, 0xFFEEEE);
-        i++;
-    }
-    while (i < HIGHT)
-    {
-        my_mlx_pixel_put(config, j, i, 0x0F0FF0);
-        i++;
-    }
+	int	i;
+
+	i = 0;
+	while (i < from && i < HIGHT)
+	{
+		my_mlx_pixel_put(config, j, i, 0xEFDEAB);
+		i++;
+	}
+	while (i < to && i < HIGHT)
+	{
+		my_mlx_pixel_put(config, j, i, config->color);
+		i++;
+	}
+	while (i < HIGHT)
+	{
+		my_mlx_pixel_put(config, j, i, 0x0F0FF0);
+		i++;
+	}
 }
 
 void clear_window(t_config *config)
@@ -74,53 +74,11 @@ void render_rays(t_config *config, t_player *player)
 {
     int i = 0;
     double ray_angle;
+    config->j = 0;
     while(i < 1000)
     {
         ray_angle = player->direction + (FOV / 2) - ((FOV / 1000) * i);
         cast_ray(config, player, ray_angle, (FOV / 2) - ((FOV / 1000) * i));
         i++;
     }
-}
-
-void draw_map_on_minimap(t_config *config)
-{
-    int y, x, color, cell_value;
-    y = 0;
-    x = 0;
-    while (y < config->map.row_len * CELL_SIZE)
-    {
-        x = 0;
-        while (x < config->map.col_len * CELL_SIZE)
-        {
-            cell_value = config->map.map[y / CELL_SIZE][x / CELL_SIZE];
-            color = (cell_value == '1') ? COLOR_WHITE : COLOR_GREEN;
-            my_mlx_pixel_put(config, x / config->mini_map_scale, y / config->mini_map_scale, color);
-            x += config->mini_map_scale;
-        }
-        y += config->mini_map_scale;
-    }
-}
-
-void draw_player_on_minimap(t_config *config)
-{
-    int player_minimap_x = config->player.x / config->mini_map_scale;
-    int player_minimap_y = config->player.y / config->mini_map_scale;
-    int py = 0, px = 0;
-
-    while (py < 5)
-    {
-        px = 0;
-        while (px < 5)
-        {
-            my_mlx_pixel_put(config, player_minimap_x + px, player_minimap_y + py, COLOR_BLACK);
-            px++;
-        }
-        py++;
-    }
-}
-
-void draw_minimap(t_config *config)
-{
-    draw_map_on_minimap(config);
-    draw_player_on_minimap(config);
 }

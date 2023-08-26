@@ -3,51 +3,88 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 17:34:09 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/24 14:40:58 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/26 14:04:45 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/pars.h"
+#include "../includes/cub3d.h"
 
-int	row_len(char **map)
+void	surronded(char **map, int x, int y)
+{
+	if (x == 0 || y == 0)
+		external_error("Wall not closed 1", EXIT_FAILURE, map);
+	if (map[x + 1] == NULL || map[x][y + 1] == 0)
+		external_error("Wall not closed 2", EXIT_FAILURE, map);
+	if (map[x][y - 1] == ' ')
+		external_error("Wall not closed 3", EXIT_FAILURE, map);
+	if (map[x][y + 1] == ' ')
+		external_error("Wall not closed 4", EXIT_FAILURE, map);
+	if (map[x - 1][y] == ' ')
+		external_error("Wall not closed 5", EXIT_FAILURE, map);
+	if (map[x + 1][y] == ' ')
+		external_error("Wall not closed 6", EXIT_FAILURE, map);
+}
+
+double	direction(char c)
+{
+	if (c == 'N')
+		return (M_PI / 2);
+	else if (c == 'S')
+		return ((3 * M_PI) / 2);
+	else if (c == 'E')
+		return (0);
+	if (c == 'W')
+		return (M_PI);
+	return (0);
+}
+
+int	valid_pos(char **map, double *x, double *y, double *c)
 {
 	int	i;
+	int	j;
+	int	count;
 
 	i = 0;
+	count = 0;
 	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (strchr("NSEW", map[i][j]))
+			{
+				*x = j;
+				*y = i;
+				*c = direction(map[i][j]);
+				count += 1;
+			}
+			j++;
+		}
 		i++;
-	return (i);
+	}
+	if (count != 1)
+		return (0);
+	return (1);
 }
 
-int	col_len(char **map)
-{
-	int		i;
-	size_t	last_row_len;
-
-	i = 0;
-	while (map[i])
-		i++;
-	i--;
-	last_row_len = ft_strlen(map[i]);
-	return (last_row_len);
-}
-
-
-int	check_wall(char **map)
+int	check_wall(char **minimap)
 {
 	int	x;
 	int	y;
+	// int count;
 
 	x = 0;
-	y = 0;
-	while (map[x])
+	// count = 0;
+	while (minimap[x])
 	{
-		while (map[y])
+		y = 0;
+		while (minimap[x][y])
 		{
-			
+			if (strchr("0SNEW", minimap[x][y])) // !rod lbal
+				surronded(minimap, x, y);
 			y++;
 		}
 		x++;
@@ -83,7 +120,7 @@ char	valid_elem_handshake(char c)
 int	valid_elem(char *map)
 {
 	int		i;
-	int		j;
+	// int		j;
 	int		nl;
 	char	c;
 
@@ -93,7 +130,7 @@ int	valid_elem(char *map)
 		i++;
 	while (map && map[i])
 	{
-		j = 0;
+		// j = 0;
 		c = valid_elem_handshake(map[i]);
 		if (c != map[i])
 			return (0);
@@ -133,24 +170,89 @@ char	*read_line(int fd)
 	return (str);
 }
 
-int	parsing_map(t_config *config)
+int	longest_line(char **map)
 {
-	int		i;
-	char	*map;
-	char	**parted_map;
-	
+	int	longest;
+	int	len;
+	int	i;
+
 	i = 0;
-	map = read_line(config->fd);
-	if (!valid_elem(map))
-		external_error("Invalid map 1", EXIT_FAILURE);
-	parted_map = ft_split(map, "\n");
-	if (!valid_map(parted_map))
-		external_error("Invalid map 2", EXIT_FAILURE);
-	// for (int i = 0; parted_map[i]; i++)
-	// 	printf("%s", parted_map[i]);
-	// if (!valid_wall(map))
-	// 	external_error("Unclosed wall", EXIT_FAILURE);
+	len = 0;
+	longest = 0;
+	while (map && map[i])
+	{
+		len = ft_strlen(ft_strtrim(map[i]));
+		if (len > longest)
+			longest = len;
+		i++;
+	}
+	return (longest);
 }
 
-// ! 6 possible element : 0 1 N S E W space newline -> extra elem OK | the 6 elem exist NOK
-// ! the map should surronded by wall -> workin on
+char	**re_allocate(char **map)
+{
+	int		i;
+	int		len;
+	int		longest;
+	char	**minimap;
+
+	i = 0;
+	len = 0;
+	longest = longest_line(map);
+	while (map[len])
+		len++;
+	minimap = malloc((len + 1) * sizeof(char *));
+	if (!minimap)
+		external_error("", EXIT_FAILURE, minimap);
+	while (i < len)
+	{
+		minimap[i] = malloc(longest + 1);
+		ft_bspace(minimap[i], longest);
+		memmove(minimap[i], map[i], ft_strlen(map[i])); // ! free map
+		minimap[i][longest] = 0;
+		i++;
+	}
+	minimap[i] = NULL;
+	return (minimap);
+}
+
+void	save_row_col_len(t_config *config)
+{
+	int 	i;
+	char	**map;
+
+	i = 0;
+	map = config->map.map;
+	if (!map && !map[i])
+		external_error("Invalid map", EXIT_FAILURE, map);
+	config->map.col_len = ft_strlen(map[i]) - 1;
+	while (map && map[i])
+		i++;
+	config->map.row_len = i - 1;
+	
+}
+
+int	parsing_map(t_config *config)
+{
+	char	*map;
+	char	**split_config;
+	char 	**minimap;
+	// int		longest;
+
+	// longest = 0;
+	map = read_line(config->fd);
+	if (!valid_elem(map))
+		external_error("Invalid map 1", EXIT_FAILURE, &map);
+	split_config = ft_split(map, "\n");
+	if (!split_config[0])
+		external_error("Invalid map 0", EXIT_FAILURE, split_config);
+	minimap = re_allocate(split_config); // ! free minimap
+	if (!valid_pos(minimap, &(config->player.x),
+		&(config->player.y), &(config->player.direction)))
+		external_error("Invalid map 1-1", EXIT_FAILURE, minimap);
+	if (!valid_map(minimap))
+		external_error("Invalid map 2", EXIT_FAILURE, minimap);
+	config->map.map = minimap;
+	save_row_col_len(config);
+	return (1);
+}

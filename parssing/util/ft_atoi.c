@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:17:49 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/23 16:18:53 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/26 10:57:47 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pars.h"
+#include "../../includes/cub3d.h"
 
 long	ft_atoi(char *str)
 {

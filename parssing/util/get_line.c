@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_line.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 19:13:35 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/22 21:35:42 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/26 10:57:47 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pars.h"
+#include "../../includes/cub3d.h"
 
 char	*get_line(int fd)
 {
@@ -28,7 +28,7 @@ char	*get_line(int fd)
 		readed = read(fd, buffer, 1);
 		buffer[1] = 0;
 		if (readed == -1)
-			external_error("Read have failed", EXIT_FAILURE);
+			external_error("Read have failed", EXIT_FAILURE, &result);
 		if (readed == 0)
 			break ;
 		result = ft_strjoin(result, buffer);
