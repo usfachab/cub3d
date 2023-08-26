@@ -111,3 +111,45 @@
 // {
 // 	printf("C[%d]: %d\n", i, c->floor_color[i]);
 // }
+
+// int	valid_wall(char *map)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (map && map[i])
+// 	{
+		
+// 	}
+// }
+
+// int	all_elem_exist(char c)
+// {
+// 	int	one;
+// 	int	zero;
+// 	int	N;
+// 	int	S;
+// 	int	E;
+// 	int W;
+	
+// 	one = 0;
+// 	zero = 0;
+// 	N = 0;
+// 	S = 0;
+// 	E = 0;
+// 	W = 0;
+// 	if (c == '1')
+// 		one = 1;
+// 	if (zero = '0')
+// 		zero = 1;
+// 	if (c == 'N')
+// 		N += 1;
+// 	if (zero = '0')
+// 		zero = 1;
+// 	if (c == '1')
+// 		one = 1;
+// 	if (zero = '0')
+// 		zero = 1;
+	
+		
+// }

@@ -2,7 +2,9 @@ NAME = cub3D
 
 NAME2 = cub3d_bonus
 
-SRC_MAN =   ./Mandatory/rendering/drawing.c ./Mandatory/rendering/raycasting.c ./Mandatory/main.c ./Mandatory/test_pars.c ./Mandatory/rendering/key_event.c \
+SRC_MAN =  ./Mandatory/main.c ./Mandatory/rendering/drawing.c \
+			./Mandatory/rendering/raycasting.c  ./Mandatory/test_pars.c \
+			./Mandatory/rendering/key_event.c \
 
 SRC_BON = ./bonus/main.c ./bonus/test_pars.c ./bonus/rendering_bonus/drawing.c ./bonus/rendering_bonus/raycasting.c \
 			./bonus/rendering_bonus/key_event.c 
@@ -26,6 +28,7 @@ fclean : clean
 		rm -rf $(NAME) $(NAME2)
 
 re : fclean all
+
 
 #---------------------------------YACHAAB------------------------------------------------------------#
 #---------------------------------YACHAAB------------------------------------------------------------#

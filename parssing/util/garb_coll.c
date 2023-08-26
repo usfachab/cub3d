@@ -1,26 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   garb_coll.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/21 17:09:22 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/23 18:45:22 by yachaab          ###   ########.fr       */
+/*   Created: 2023/08/23 19:03:50 by yachaab           #+#    #+#             */
+/*   Updated: 2023/08/23 19:14:49 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/pars.h"
+#include "../include/pars.h"
 
-int	main(int argc, char *argv[])
+
+void	*gc_malloc(size_t size, t_list **lst)
 {
-	t_config	config;
+	void	*ptr;
 
-	if (argc != 2)
-		external_error("number of arguments incorrect.", EXIT_FAILURE);
-	if (!parsing_texture(&config, argv[1]))
-		return (1);
-	if (!parsing_map(&config))
-		return (1);
-	return (0);
+	ptr = malloc(size);
+	ft_lstadd_back(lst, ft_lstnew(ptr));
+	return (ptr);
+}
+
+void	gc_free(t_list **lst)
+{
+	t_list	*head;
+	t_list	*hold;
+
+	head = *lst;
+	while (head)
+	{
+		hold = head->next;
+		free(head->ptr);
+		free(head);
+		head = hold;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 17:17:35 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/23 17:36:50 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/23 19:51:27 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
+
+typedef struct s_list
+{
+	void			*ptr;
+	struct t_list	*next;
+}	t_list;
 
 typedef struct  s_config
 {
@@ -39,7 +45,7 @@ typedef struct  s_config
     // int		map_cols;
     // char	player_start_direction;
 }	t_config;
-/* --------------- util.c --------------- */
+// ?--------------- UTIL ----------------? //
 int		ft_strlen(const char *str);
 char	*ft_strdup(const char *s1);
 char	*ft_strjoin(char *s1, const char *s2);
