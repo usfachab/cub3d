@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.0.1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 17:08:11 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/23 17:19:07 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/24 17:12:30 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,5 @@ char	*store_texture(char *texture, char *value, t_config *config)
 	}
 	else
 		external_error("Duplicate option", EXIT_FAILURE);
+	return (NULL);
 }

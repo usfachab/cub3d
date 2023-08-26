@@ -6,7 +6,7 @@
 /*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:36:38 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/20 11:53:59 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/26 10:10:49 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,49 +20,55 @@ void init_ray(t_ray *ray, t_player *player, double angle)
 	ray->ray_dy = sin(angle);
 }
 
-void initialize_game(t_data *img, char *map_file)
+void initialize_game(t_config *config, char *map_file)
 {
-	img->j = 0;
-	read_map(map_file, &img->map);
-	img->player = (t_player){2 * 40 + 20, 2 * 40 + 20, M_PI / 4};
+	config->j = 0;
+	read_map(map_file, &config->map);
+	config->player = (t_player){2 * 40 + 20, 2 * 40 + 20, M_PI / 4};
 }
 
-int initialize_graphics(t_data *img)
+int initialize_graphics(t_config *config)
 {
-	img->mlx = mlx_init();
-	if (!img->mlx)
+	config->mlx = mlx_init();
+	if (!config->mlx)
 		return (0);
-	img->mlx_win = mlx_new_window(img->mlx, HIGHT, WIDTH, "Hello World!");
-	if (!img->mlx_win)
+	config->mlx_win = mlx_new_window(config->mlx, HIGHT, WIDTH, "Hello World!");
+	if (!config->mlx_win)
 		return (0);
-	img->img = mlx_new_image(img->mlx, HIGHT, WIDTH);
-	if (!img->img)
+	config->img = mlx_new_image(config->mlx, HIGHT, WIDTH);
+	if (!config->img)
 		return (0);
-	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
-	if (!img->addr)
+	config->data.addr = mlx_get_data_addr(config->img, &config->data.bits_per_pixel, &config->data.line_length, &config->data.endian);
+	if (!config->data.addr)
 		return (0);
 	return (1);
 }
 
+int exit_game(void)
+{
+	exit(1);
+}
+
 int main(int argc, char *argv[])
 {
-	t_data  img;
+	t_config config;
 
 	if (argc != 2)
 	{
 		fprintf(stderr, "Usage: %s <map_file>\n", argv[0]);
 		return (EXIT_FAILURE);
 	}
-	initialize_game(&img, argv[1]);
-	if (!initialize_graphics(&img))
+	initialize_game(&config, argv[1]);
+	if (!initialize_graphics(&config))
 	{
 		fprintf(stderr, "Error initializing graphics.\n");
 		return (EXIT_FAILURE);
 	}
-	mlx_put_image_to_window(img.mlx, img.mlx_win, img.img, 0, 0);
-	mlx_hook(img.mlx_win, 2, 1, key_hook, &img);
-	mlx_put_image_to_window(img.mlx, img.mlx_win, img.img, 0, 0);
-	mlx_loop(img.mlx);
-	free_map(&img.map);
+	mlx_put_image_to_window(config.mlx, config.mlx_win, config.img, 0, 0);
+	mlx_hook(config.mlx_win, 2, 1, key_hook, &config);
+	mlx_hook(config.mlx_win, 17, 0, exit_game, NULL);
+	mlx_put_image_to_window(config.mlx, config.mlx_win, config.img, 0, 0);
+	mlx_loop(config.mlx);
+	free_map(&config.map);
 	return (EXIT_SUCCESS);
 }
