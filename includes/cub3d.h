@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 13:25:41 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/27 17:56:25 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/27 20:42:30 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,13 +116,6 @@ typedef struct  s_config
 }	t_config;
 
 
-typedef struct s_plit
-{
-	int		i;
-	int		j;
-	int		y;
-	char	**resl;
-}			t_split;
 
 typedef struct s_intersection {
 	double	x;
@@ -183,11 +176,11 @@ char		*store_texture(char *texture, char *value, t_config *config);
 int			incomplete_inst(t_config *config);
 int			valid_color_schema(char *str);
 void		start_converting(int *arr, char *str, int *rgb);
-int			setup_texture(t_config config);
+int			setup_texture(t_config *config);
 /*--------------- MAP ---------------------*/
 int			parsing_map(t_config *config);
 void		ft_bspace(void *s, int n);
 t_config	initialize_game(char *filename);
 
-void	free_config_resources(t_config *config);
+void		free_config_resources(t_config *config);
 #endif

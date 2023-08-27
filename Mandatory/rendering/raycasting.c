@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:31:54 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/27 18:07:33 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/27 21:40:02 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void find_horizontal_intersection(t_config *config, t_ray ray, double angle, t_i
 			break ;
 		if (config->map.map[(int)yinter/ CELL_SIZE][(int)xinter / CELL_SIZE] == '1')
 			break ;
-		if (stepy < 0 && config->map.map[(int)yinter/ CELL_SIZE - 1][(int)xinter / CELL_SIZE] == '1')
+		if (stepy < 0 && yinter >= CELL_SIZE && config->map.map[(int)yinter/ CELL_SIZE - 1][(int)xinter / CELL_SIZE] == '1')
 			break ;
 		xinter += stepx;
 		yinter += stepy;
@@ -105,7 +105,7 @@ void	find_vertical_intersection(t_config *config, t_ray ray, double angle, t_int
 		
 		if (config->map.map[(int)yinter/ CELL_SIZE][(int)xinter / CELL_SIZE] == '1')
 			break;
-		if (stepx < 0 && config->map.map[(int)yinter / CELL_SIZE][(int)xinter / CELL_SIZE - 1] == '1')
+		if (stepx < 0 && xinter >= CELL_SIZE && config->map.map[(int)yinter / CELL_SIZE][(int)xinter / CELL_SIZE - 1] == '1')
 			break ;
 		xinter += stepx;
 		yinter += stepy;
@@ -138,7 +138,7 @@ void cast_ray(t_config *config, t_player *player, double angle, double t)
 	// tex_values.x = config->j++;
 	// tex_values.y = 0; // You can set this value based on your logic
 	tex_values.i = 0; // Starting value
-	printf("player_x : %f | player_y %f | high : %f | from : %f | to : %f | i : %d\n", tex_values.x, tex_values.y, tex_values.high, tex_values.from, tex_values.to, tex_values.i);
+	// printf("player_x : %f | player_y %f | high : %f | from : %f | to : %f | i : %d\n", tex_values.x, tex_values.y, tex_values.high, tex_values.from, tex_values.to, tex_values.i);
 	if (horizontal.distance < vertical.distance)
 	{
 		tex_values.x = horizontal.x;
@@ -146,7 +146,7 @@ void cast_ray(t_config *config, t_player *player, double angle, double t)
 		tex_values.high = get_hight(horizontal.distance);
 		tex_values.from = (HIGHT / 2) - tex_values.high / 2;
 		if (sin(angle) > 0)
-			tex_values.current_texture = &config->nt; // North
+			tex_values.current_texture = &(config->nt); // Nort
 		else
 			tex_values.current_texture = &config->st; // South
 	}

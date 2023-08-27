@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:21:37 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/27 18:10:58 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/27 21:44:10 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,22 @@ void my_mlx_pixel_put(t_config *config, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-unsigned int    draw_texture(t_config *config, int x, int y)
-{
-	char *dst;
 
-	dst = config->data.addr + (y * config->data.line_length + x * (config->data.bits_per_pixel / 8));
-	return *(unsigned int *)dst;
+
+unsigned int    get_texture_pixel(t_set_tex *set)
+{
+	// void	*dst;
+	// t_texture *tex;
+	// tex = set->current_texture;
+	// dst = tex->addr;
+	double x;
+	double y;
+	char *dst;
+	y = set->current_texture->height * ((set->i - set->from) / set->high);
+	x = (set->x + set->y) - ((int)(set->x + set->y) / CELL_SIZE) * CELL_SIZE;
+	x = set->current_texture->width * x / CELL_SIZE;
+	dst = set->current_texture->addr + ((int)y * set->current_texture->line_length + (int)x * (set->current_texture->bits_per_pixel / 8));
+	return (*(unsigned int *)dst);
 }
 
 void draw_wall(t_config *config, t_set_tex *tex_values)
@@ -44,7 +54,7 @@ void draw_wall(t_config *config, t_set_tex *tex_values)
     while (tex_values->i < to && tex_values->i < HIGHT)
     {
 		//you must call your function here and set the value on config color so you must return unsigned int
-        // config->color = draw_texture(config, j, i);
+        config->color = get_texture_pixel(tex_values);
 		my_mlx_pixel_put(config, config->j, tex_values->i, config->color);
         tex_values->i++;
     }
