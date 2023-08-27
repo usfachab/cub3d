@@ -6,7 +6,7 @@
 /*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 14:52:19 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/26 17:04:20 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/27 17:57:01 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int key_hook(int keycode, void *param)
 		rotate_player(&config->player, -TURN_ANGLE);
 	if (keycode == 65361)
 		rotate_player(&config->player, +TURN_ANGLE);
-	render_rays(config, &config->player);
+	render_rays(config, &config->player);tex_values
 	mlx_put_image_to_window(config->mlx, config->mlx_win, config->img, 0, 0);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 13:25:41 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/26 20:28:10 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/27 17:56:25 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ typedef struct s_set_tex
 	double		y; //cordonate of the wall on y
 	int			i; //that used in draw_wall
 	t_texture	*current_texture; //texture that will used
+	double		to;
 }	t_set_tex;
 
 typedef struct  s_config

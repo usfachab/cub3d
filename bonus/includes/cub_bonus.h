@@ -6,7 +6,7 @@
 /*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 21:41:17 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/26 17:03:49 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/27 13:25:59 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,13 @@
 #define WIDTH 1000
 #define MOUSE_SPEED 0.05
 #define FOV (M_PI / 3)
-#define MINIMAP_SCALE 0.2
-#define MINIMAP_WIDTH (WIDTH * MINIMAP_SCALE)
-#define MINIMAP_HEIGHT (HIGHT * MINIMAP_SCALE)
+// #define MINIMAP_SCALE 0.2
+// #define MINIMAP_WIDTH (WIDTH * MINIMAP_SCALE)
+// #define MINIMAP_HEIGHT (HIGHT * MINIMAP_SCALE)
+# define MINIMAP_SIZE 200
+# define MINIMAP_SCALE 5
 #define MINIMAP_CELL_SIZE (CELL_SIZE * MINIMAP_SCALE)
 #define MINIMAP_PLAYER_SIZE (PLAYER_SIZE * MINIMAP_SCALE)
-
 typedef struct
 {
 	double ray_x;
@@ -137,8 +138,6 @@ typedef struct s_intersection {
 }	t_intersection;
 
 
-// libft
-// int	ft_strlen(char *str);
 
 // drawing
 void    my_mlx_pixel_put(t_config *config, int x, int y, int color);
@@ -147,7 +146,9 @@ void    render_map(t_config *config, t_map *map);
 void    draw_player(t_config *config, t_player *player);
 void	draw_wall(t_config *config, double from, double to, int j);
 void	render_rays(t_config *config, t_player *player);
-void    draw_minimap(t_config *config);
+void draw_minimap(t_config *config);
+void draw_minimap_player(t_config *config);
+
 
 // ray_casting
 void	initialize_intersections(t_intersection *horizontal, t_intersection *vertical);
@@ -164,15 +165,6 @@ int     key_hook(int keycode, void *param);
 bool	is_valid_position(t_map *map, int x, int y);
 void    move_player(t_player *player, t_map *map, double direction);
 int     mouse_move(int x, int y, void *param);
-
-// utils
-// void    free_map(t_map *map);
-// void	read_map(char *filename, t_map *map);
-// void    handle_error(char *message);
-// char    **ft_split(char *str, int row_len, int col_len);
-// void    calculate_map_size(char *buffer, int bytes_read, int *row_len, int *col_len);
-void	init_ray(t_ray *ray, t_player *player, double angle);
-
 
 
 // ! PARSING

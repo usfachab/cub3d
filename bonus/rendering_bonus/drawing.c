@@ -6,7 +6,7 @@
 /*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 17:24:15 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/26 17:03:18 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/27 14:06:02 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void draw_wall(t_config *config, double from, double to, int j)
 	}
 	while (i < to && i < HIGHT)
 	{
+        //
 		my_mlx_pixel_put(config, j, i, config->color);
 		i++;
 	}
@@ -42,7 +43,7 @@ void draw_wall(t_config *config, double from, double to, int j)
 	}
 }
 
-void clear_window(t_config *config)
+void    clear_window(t_config *config)
 {
     int x, y;
     y = -1;

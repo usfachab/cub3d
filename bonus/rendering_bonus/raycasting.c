@@ -6,7 +6,7 @@
 /*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 17:41:56 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/26 17:03:07 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/27 14:00:15 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ void cast_ray(t_config *config, t_player *player, double angle, double t)
     {
         hight = get_hight(vertical.distance);
         if (cos(angle) > 0)
-            config->color = 0; // West - Blue
+            config->color = 0; // West - black
         else
             config->color = 0xFFFF00; // East - Yellow
     }

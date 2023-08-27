@@ -6,7 +6,7 @@
 /*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:21:37 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/26 20:36:42 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/27 18:10:58 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,66 +20,41 @@ void my_mlx_pixel_put(t_config *config, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
+unsigned int    draw_texture(t_config *config, int x, int y)
+{
+	char *dst;
+
+	dst = config->data.addr + (y * config->data.line_length + x * (config->data.bits_per_pixel / 8));
+	return *(unsigned int *)dst;
+}
+
 void draw_wall(t_config *config, t_set_tex *tex_values)
 {
-    int i = tex_values->i;
+    tex_values->i = 0;
     double from = tex_values->from;
     double to = from + tex_values->high;
+
+	tex_values->to = to;
 	config->color = 0;
-    while (i < from && i < HIGHT)
+    while (tex_values->i < from && tex_values->i < HIGHT)
     {
-        my_mlx_pixel_put(config, tex_values->x, i, config->ceiling_rgb);
-        i++;
+        my_mlx_pixel_put(config, config->j, tex_values->i, config->ceiling_rgb);
+        tex_values->i++;
     }
-    while (i < to && i < HIGHT)
+    while (tex_values->i < to && tex_values->i < HIGHT)
     {
 		//you must call your function here and set the value on config color so you must return unsigned int
-        my_mlx_pixel_put(config, tex_values->x, i, config->color);
-        i++;
+        // config->color = draw_texture(config, j, i);
+		my_mlx_pixel_put(config, config->j, tex_values->i, config->color);
+        tex_values->i++;
     }
-    while (i < HIGHT)
+    while (tex_values->i < HIGHT)
     {
-        my_mlx_pixel_put(config, tex_values->x, i, config->floor_rgb);
-        i++;
+        my_mlx_pixel_put(config, config->j, tex_values->i, config->floor_rgb);
+        tex_values->i++;
     }
 }
 
-
-// void draw_wall(t_config *config, double from, double to, int j)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (i < from && i < HIGHT)
-// 	{
-// 		my_mlx_pixel_put(config, j, i, 0xEFDEAB);
-// 		i++;
-// 	}
-// 	while (i < to && i < HIGHT)
-// 	{
-// 		my_mlx_pixel_put(config, j, i, config->color);
-// 		i++;
-// 	}
-// 	while (i < HIGHT)
-// 	{
-// 		my_mlx_pixel_put(config, j, i, 0x0F0FF0);
-// 		i++;
-// 	}
-// }
-
-void clear_window(t_config *config)
-{
-	int	x;
-	int	y;
-	
-	y = -1;
-	while (++y < HIGHT)
-	{
-		x = -1;
-		while (++x < WIDTH)
-			my_mlx_pixel_put(config, x, y, 0x000000);
-	}
-}
 
 void draw_player(t_config *config, t_player *player)
 {
