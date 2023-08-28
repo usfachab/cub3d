@@ -47,7 +47,7 @@ $(BONUS) : $(OBJ_BON) $(OBJ_PAR)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 git : 
-	make fclean && git add . && git commit -m "MERGING" && git push -f origin master
+	make fclean && git add . && git commit -m "BFORE MERGE" && git push -f origin master
 
 clean :
 	@rm -fr $(OBJ_PAR) $(OBJ_REN) $(OBJ_BON)
