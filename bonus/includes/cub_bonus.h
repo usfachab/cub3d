@@ -6,7 +6,7 @@
 /*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 21:41:17 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/27 13:25:59 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/28 11:15:23 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,6 @@
 #define WIDTH 1000
 #define MOUSE_SPEED 0.05
 #define FOV (M_PI / 3)
-// #define MINIMAP_SCALE 0.2
-// #define MINIMAP_WIDTH (WIDTH * MINIMAP_SCALE)
-// #define MINIMAP_HEIGHT (HIGHT * MINIMAP_SCALE)
 # define MINIMAP_SIZE 200
 # define MINIMAP_SCALE 5
 #define MINIMAP_CELL_SIZE (CELL_SIZE * MINIMAP_SCALE)
@@ -68,6 +65,17 @@ typedef struct s_texture
 	int		width;
 	int		height;
 }	t_texture;
+
+typedef struct s_set_tex
+{
+	double		high; //hight of the wall
+	double		from; //begin of the wall
+	double		x; //cordonate of the wall on x
+	double		y; //cordonate of the wall on y
+	int			i; //that used in draw_wall
+	t_texture	*current_texture; //texture that will used
+	double		to;
+}	t_set_tex;
 
 typedef struct s_player
 {
@@ -140,28 +148,27 @@ typedef struct s_intersection {
 
 
 // drawing
-void    my_mlx_pixel_put(t_config *config, int x, int y, int color);
-void    clear_window(t_config *config);
-void    render_map(t_config *config, t_map *map);
-void    draw_player(t_config *config, t_player *player);
-void	draw_wall(t_config *config, double from, double to, int j);
+void	my_mlx_pixel_put(t_config *config, int x, int y, int color);
+void	clear_window(t_config *config);
+void	render_map(t_config *config, t_map *map);
+void	draw_player(t_config *config, t_player *player);
+void	draw_wall(t_config *config, t_set_tex *tex_values);
 void	render_rays(t_config *config, t_player *player);
-void draw_minimap(t_config *config);
-void draw_minimap_player(t_config *config);
+void	draw_minimap(t_config *config);
 
 
 // ray_casting
 void	initialize_intersections(t_intersection *horizontal, t_intersection *vertical);
-void    find_horizontal_intersection(t_config *config, t_ray ray, double angle, t_intersection *horizontal);
+void	find_horizontal_intersection(t_config *config, t_ray ray, double angle, t_intersection *horizontal);
 void	find_vertical_intersection(t_config *config, t_ray ray, double angle, t_intersection *vertical);
-void    cast_ray(t_config *config, t_player *player, double angle, double t);
+void	cast_ray(t_config *config, t_player *player, double angle, double t);
 double	get_hight(double dis);
 void	from_to(double *from, double *to, double hight);
-void    init_ray(t_ray *ray, t_player *player, double angle);
+void	init_ray(t_ray *ray, t_player *player, double angle);
 
 // key_hook
 void	rotate_player(t_player *player, double angle);
-int     key_hook(int keycode, void *param);
+int		key_hook(int keycode, void *param);
 bool	is_valid_position(t_map *map, int x, int y);
 void    move_player(t_player *player, t_map *map, double direction);
 int     mouse_move(int x, int y, void *param);
@@ -190,5 +197,8 @@ int			setup_texture(t_config config);
 int			parsing_map(t_config *config);
 void		ft_bspace(void *s, int n);
 t_config	initialize_game(char *filename);
+
+
+
 
 #endif

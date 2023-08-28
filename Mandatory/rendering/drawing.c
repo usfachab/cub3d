@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:21:37 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/27 21:44:10 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/28 09:42:38 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,6 @@ void my_mlx_pixel_put(t_config *config, int x, int y, int color)
 
 unsigned int    get_texture_pixel(t_set_tex *set)
 {
-	// void	*dst;
-	// t_texture *tex;
-	// tex = set->current_texture;
-	// dst = tex->addr;
 	double x;
 	double y;
 	char *dst;

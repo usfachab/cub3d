@@ -6,7 +6,7 @@
 /*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:36:38 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/26 17:00:52 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/28 10:09:14 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int exit_game(void)
 	exit(1);
 }
 
+
 int main(int argc, char *argv[])
 {
 	t_config config;
@@ -51,9 +52,7 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "Usage: %s <map_file>\n", argv[0]);
 		return (EXIT_FAILURE);
 	}
-	// initialize_game(&config, argv[1]);
 	config = initialize_game(argv[1]);
-	// config.player = (t_player){2 * 40 + 20, 2 * 40 + 20};
 	config.player.x = config.player.x * CELL_SIZE + 20;
 	config.player.y = config.player.y * CELL_SIZE + 20;
 	printf("\n\nx : %f  |  y : %f\n\n map.size: %d\n", config.player.x, config.player.y,config.map.row_len);
@@ -67,6 +66,5 @@ int main(int argc, char *argv[])
 	mlx_hook(config.mlx_win, 17, 0, exit_game, NULL);
 	mlx_put_image_to_window(config.mlx, config.mlx_win, config.img, 0, 0);
 	mlx_loop(config.mlx);
-	// free_map(&config.map);
 	return (EXIT_SUCCESS);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:31:54 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/27 21:40:02 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/28 09:41:08 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,11 +118,8 @@ void	find_vertical_intersection(t_config *config, t_ray ray, double angle, t_int
 
 void cast_ray(t_config *config, t_player *player, double angle, double t)
 {
-	// double from;
-	// double to;
 	t_ray ray;
 	t_intersection horizontal, vertical;
-	// t_texture *current_texture;
 
 	angle = remainder(angle, M_PI * 2);
 	if (angle < 0)
@@ -135,10 +132,6 @@ void cast_ray(t_config *config, t_player *player, double angle, double t)
 	horizontal.distance *= cos(t);
 	vertical.distance *= cos(t);
 	t_set_tex tex_values;
-	// tex_values.x = config->j++;
-	// tex_values.y = 0; // You can set this value based on your logic
-	tex_values.i = 0; // Starting value
-	// printf("player_x : %f | player_y %f | high : %f | from : %f | to : %f | i : %d\n", tex_values.x, tex_values.y, tex_values.high, tex_values.from, tex_values.to, tex_values.i);
 	if (horizontal.distance < vertical.distance)
 	{
 		tex_values.x = horizontal.x;
