@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 12:13:51 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/26 15:21:50 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/28 14:57:09 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub_bonus.h"
+#include "../../includes/cub3d.h"
 
 char	**ft_free(char **word)
 {
@@ -77,7 +77,7 @@ char	*collect_string(char *str, char *del, int *i)
 			return (NULL);
 		if (string != NULL)
 		{
-			memmove(tmp, string, len);
+			ft_memmove(tmp, string, len);
 			free(string);
 		}
 		string = tmp;
@@ -115,4 +115,3 @@ char	**ft_split(char *str, char *del)
 	word[index] = NULL;
 	return (word);
 }
-

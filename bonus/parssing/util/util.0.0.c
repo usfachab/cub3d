@@ -1,29 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util.c                                             :+:      :+:    :+:   */
+/*   util.0.0.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 10:15:35 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/26 15:07:34 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/28 14:55:43 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub_bonus.h"
-
-
-
-void	external_error(char *str, int errnum, char **ptr)
-{
-	printf("Error: %s\n", str);
-	while (ptr && *ptr)
-	{
-		free(*ptr);
-		ptr++;
-	}
-	exit (errnum);
-}
+#include "../../includes/cub3d.h"
 
 int	ft_strlen(const char *str)
 {
@@ -62,8 +49,8 @@ char	*ft_strdup(const char *s1)
 
 char	*ft_strjoin(char *s1, const char *s2)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	*ptr;
 
 	i = 0;
@@ -89,31 +76,24 @@ char	*ft_strjoin(char *s1, const char *s2)
 	return (ptr);
 }
 
-char *ft_strtrim(char *str)
+char	*ft_strtrim(char *str)
 {
-	char	*trimmed;
 	char	*start;
 	char	*end;
 	int		len;
 
-    if (!str)
-		return NULL;
-    start = str;
+	if (!str)
+		return (NULL);
+	start = str;
 	end = str + (ft_strlen(str) - 1);
-    while ((*start == ' ' || *start == '\t') && *start)
+	while ((*start == ' ' || *start == '\t') && *start)
 		start++;
-    while ((end > start) && (*end == ' ' || *end == '\t'))
+	while ((end > start) && (*end == ' ' || *end == '\t'))
 		end--;
-    len = end - start + 1;
-    trimmed = (char *)malloc(len + 1);
-    if (trimmed)
-	{
-        strncpy(trimmed, start, len); // !Rod lbal
-   		trimmed[len] = '\0';
-    }
-    return (trimmed);
+	len = end - start + 1;
+	start[len] = 0;
+	return (ft_strdup(start));
 }
-
 
 int	ft_strcmp(char *s1, char *s2)
 {
