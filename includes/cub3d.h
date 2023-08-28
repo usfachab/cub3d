@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 13:25:41 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/28 14:31:43 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/28 15:33:42 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@
 # define CELL_SIZE 40
 # define MOVE_SPEED 10
 # define PLAYER_SIZE 10
-# define FOV (M_PI / 3)
-# define TURN_ANGLE (M_PI / 60)
+# define FOV 1.0471975511965976
+# define TURN_ANGLE 0.05235987755982988
 
 // !--------------- PARSING -----------------! //
 typedef struct s_texture
@@ -40,7 +40,7 @@ typedef struct s_texture
 	char	*addr;
 	int		width;
 	int		height;
-	int 	endian;
+	int		endian;
 	int		line_length;
 	int		bits_per_pixel;
 }	t_texture;
@@ -62,12 +62,12 @@ typedef struct s_map
 typedef struct s_data
 {
 	char	*addr;
-	int 	endian;
+	int		endian;
 	int		line_length;
 	int		bits_per_pixel;
 }	t_data;
 
-typedef struct  s_config
+typedef struct s_config
 {
 	t_texture	nt;
 	t_texture	st;
@@ -148,27 +148,31 @@ typedef struct s_set_tex
 	int			i;
 }	t_set_tex;
 
-typedef struct
+typedef struct s_ray
 {
-	double ray_x;
-	double ray_y;
-	double ray_dx;
-	double ray_dy;
-	double distance;
-} t_ray;
+	double	ray_x;
+	double	ray_y;
+	double	ray_dx;
+	double	ray_dy;
+	double	distance;
+}	t_ray;
 // *----------------- DRAW -----------------* //
 void		draw_player(t_config *config, t_player *player);
-void 		draw_wall(t_config *config, t_set_tex *tex_values);
+void		draw_wall(t_config *config, t_set_tex *tex_values);
 void		my_mlx_pixel_put(t_config *config, int x, int y, int color);
 // *--------------- RAY CAST ---------------* //
 double		get_hight(double dis);
 void		render_rays(t_config *config, t_player *player);
 void		from_to(double *from, double *to, double hight);
 void		init_ray(t_ray *ray, t_player *player, double angle);
-void		cast_ray(t_config *config, t_player *player, double angle, double t);
-void		initialize_intersections(t_intersection *horizontal, t_intersection *vertical);
-void		find_vertical_intersection(t_config *config, t_ray ray, double angle, t_intersection *vertical);
-void		find_horizontal_intersection(t_config *config, t_ray ray, double angle, t_intersection *horizontal);
+void		cast_ray(t_config *config,
+				t_player *player, double angle, double t);
+void		initialize_intersections(t_intersection *horizontal,
+				t_intersection *vertical);
+void		find_vertical_intersection(t_config *config, t_ray ray,
+				double angle, t_intersection *vertical);
+void		find_horizontal_intersection(t_config *config, t_ray ray,
+				double angle, t_intersection *horizontal);
 // *---------------- HOOKS ----------------* //
 int			key_hook(int keycode, void *param);
 int			initialize_graphics(t_config *config);

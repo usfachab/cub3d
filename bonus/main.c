@@ -28,7 +28,7 @@ int exit_game(void)
 int loop_hook_mouse(t_config *config)
 {
     render_rays(config, &config->player);
-	draw_minimap(config);
+	// draw_minimap(config);
     mlx_put_image_to_window(config->mlx, config->mlx_win, config->img, 0, 0);
     return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:21:37 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/28 09:42:38 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/28 21:45:25 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,14 @@ unsigned int    get_texture_pixel(t_set_tex *set)
 	double x;
 	double y;
 	char *dst;
+
+	dst = "test";
 	y = set->current_texture->height * ((set->i - set->from) / set->high);
 	x = (set->x + set->y) - ((int)(set->x + set->y) / CELL_SIZE) * CELL_SIZE;
+	// printf("y: %d | x: %d | line_len: %d\n", (int)y, (int)x, set->current_texture->line_length);
 	x = set->current_texture->width * x / CELL_SIZE;
-	dst = set->current_texture->addr + ((int)y * set->current_texture->line_length + (int)x * (set->current_texture->bits_per_pixel / 8));
+		dst = set->current_texture->addr + ((int)y * set->current_texture->line_length + (int)x * (set->current_texture->bits_per_pixel / 8));
+	// dst = set->current_texture->addr + (int)(floor(y) * set->current_texture->line_length + floor(x) * (set->current_texture->bits_per_pixel / 8));
 	return (*(unsigned int *)dst);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:31:54 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/28 09:41:08 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/28 15:39:45 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,9 +150,9 @@ void cast_ray(t_config *config, t_player *player, double angle, double t)
 		tex_values.high = get_hight(vertical.distance);
 		tex_values.from = (HIGHT / 2) - tex_values.high / 2;
 		if (cos(angle) > 0)
-			tex_values.current_texture = &config->wt; // West
+			tex_values.current_texture = &config->et; // West
 		else
-			tex_values.current_texture = &config->et; // East
+			tex_values.current_texture = &config->wt; // East
 	}
 	draw_wall(config, &tex_values);
 	config->j++;

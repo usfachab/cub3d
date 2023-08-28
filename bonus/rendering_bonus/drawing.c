@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 17:24:15 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/28 11:24:08 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/28 21:55:33 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,27 +86,27 @@ void render_rays(t_config *config, t_player *player)
         i++;
     }
 }
-void    draw_minimap(t_config *config)
-{
-    int y = 0;
-    while (y < config->map.row_len * CELL_SIZE)
-    {
-        int x = 0;
-        while (x < config->map.col_len * CELL_SIZE)
-        {
-            int color = COLOR_GREEN;
-            if (config->map.map[y / CELL_SIZE][x / CELL_SIZE] == '1')
-                color = COLOR_WHITE;
-            else if (config->map.map[y / CELL_SIZE][x / CELL_SIZE] == 'D')
-                color = COLOR_RED;
-            else if (config->map.map[y / CELL_SIZE][x / CELL_SIZE] == 'd')
-                color = COLOR_BLUE;
+// void    draw_minimap(t_config *config)
+// {
+//     int y = 0;
+//     while (y < config->map.row_len * CELL_SIZE)
+//     {
+//         int x = 0;
+//         while (x < config->map.col_len * CELL_SIZE)
+//         {
+//             int color = COLOR_GREEN;
+//             if (config->map.map[y / CELL_SIZE][x / CELL_SIZE] == '1')
+//                 color = COLOR_WHITE;
+//             else if (config->map.map[y / CELL_SIZE][x / CELL_SIZE] == 'D')
+//                 color = COLOR_RED;
+//             else if (config->map.map[y / CELL_SIZE][x / CELL_SIZE] == 'd')
+//                 color = COLOR_BLUE;
 
-            if (fabs(x - config->player.x) <= PLAYER_SIZE/2 && fabs(y - config->player.y) <= PLAYER_SIZE/2)
-                color = COLOR_BLACK;
-            my_mlx_pixel_put(config, x / MINIMAP_SCALE, y / MINIMAP_SCALE, color);
-            x += MINIMAP_SCALE;
-        }
-        y += MINIMAP_SCALE;
-    }
-}
+//             if (fabs(x - config->player.x) <= PLAYER_SIZE/2 && fabs(y - config->player.y) <= PLAYER_SIZE/2)
+//                 color = COLOR_BLACK;
+//             my_mlx_pixel_put(config, x / MINIMAP_SCALE, y / MINIMAP_SCALE, color);
+//             x += MINIMAP_SCALE;
+//         }
+//         y += MINIMAP_SCALE;
+//     }
+// }
