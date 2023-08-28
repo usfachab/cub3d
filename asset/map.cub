@@ -1,7 +1,7 @@
-NO	./parssing/src/background-made-from-bricks.xpm
-SO	./parssing/src/black-brick-wall-textured-background.xpm
-EA	./parssing/src/fractured-ground-background.xpm
-WE	./parssing/src/O9H8JP0.xpm
+NO	./parssing/src/Wall-Grass_01_L-128x128.xpm
+SO	./parssing/src/Wall-Roofs_01_L-128x128.xpm
+EA	./parssing/src/Wall-Stone_01_L-128x128.xpm
+WE	./parssing/src/Wall-Tile_01_R-128x128.xpm
 C  	69, 179, 224
 F	148, 118, 90
 
