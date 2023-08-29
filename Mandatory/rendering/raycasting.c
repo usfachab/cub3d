@@ -6,11 +6,11 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:31:54 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/28 15:39:45 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/29 08:03:11 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../includes/cub3d.h"
 
 double	get_hight(double dis)
 {
@@ -150,9 +150,9 @@ void cast_ray(t_config *config, t_player *player, double angle, double t)
 		tex_values.high = get_hight(vertical.distance);
 		tex_values.from = (HIGHT / 2) - tex_values.high / 2;
 		if (cos(angle) > 0)
-			tex_values.current_texture = &config->et; // West
+			tex_values.current_texture = &config->et; // East
 		else
-			tex_values.current_texture = &config->wt; // East
+			tex_values.current_texture = &config->wt; // West
 	}
 	draw_wall(config, &tex_values);
 	config->j++;

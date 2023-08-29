@@ -18,10 +18,10 @@ SRC_REN		= 	main.c rendering/drawing.c \
 				rendering/raycasting.c \
 				rendering/key_event.c \
 
-SRC_BON		=	main.c  rendering_bonus/drawing.c rendering_bonus/raycasting.c \
-				rendering_bonus/key_event.c 
+SRC_BON		=	main.c  rendering/drawing.c rendering/raycasting.c \
+				rendering/key_event.c 
 
-SRC_PAR_PRE	= 	$(addprefix parssing/, $(SRC_PAR))
+SRC_PAR_PRE	= 	$(addprefix Mandatory/parssing/, $(SRC_PAR))
 
 SRC_REN_PRE = 	$(addprefix Mandatory/, $(SRC_REN))
 

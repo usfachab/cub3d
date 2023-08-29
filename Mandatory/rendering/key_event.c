@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   key_event.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:39:49 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/26 16:51:36 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/29 07:35:13 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../includes/cub3d.h"
 
 void rotate_player(t_player *player, double angle)
 {

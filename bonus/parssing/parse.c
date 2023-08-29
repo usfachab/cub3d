@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 17:09:22 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/28 14:18:41 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/28 15:45:05 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,11 @@ t_config	initialize_game(char *filename)
 	t_config	config;
 
 	if (!parsing_texture(&config, filename))
-		external_error("1", EXIT_FAILURE, NULL);
+		external_error("Invalid instructions", EXIT_FAILURE, NULL);
 	if (!parsing_map(&config))
-		external_error("2", EXIT_FAILURE, NULL);
+		external_error("Invalid map", EXIT_FAILURE, NULL);
 	if (!setup_texture(&config))
-		external_error("3", EXIT_FAILURE, NULL);
+		external_error("Setup textures", EXIT_FAILURE, config.map.map);
 	cleanup(&config);
 	return (config);
 }

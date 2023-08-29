@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   drawing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:21:37 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/29 08:41:09 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/28 22:30:35 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 void my_mlx_pixel_put(t_config *config, int x, int y, int color)
 {
@@ -30,9 +30,11 @@ unsigned int    get_texture_pixel(t_set_tex *set)
 
 	dst = "test";
 	y = set->current_texture->height * ((set->i - set->from) / set->high);
-	
-	x = set->current_texture->width * set->x / CELL_SIZE;
-	dst = set->current_texture->addr + ((int)y * set->current_texture->line_length + (int)x * (set->current_texture->bits_per_pixel / 8));
+	x = (set->x + set->y) - ((int)(set->x + set->y) / CELL_SIZE) * CELL_SIZE;
+	// printf("y: %d | x: %d | line_len: %d\n", (int)y, (int)x, set->current_texture->line_length);
+	x = set->current_texture->width * x / CELL_SIZE;
+		dst = set->current_texture->addr + ((int)y * set->current_texture->line_length + (int)x * (set->current_texture->bits_per_pixel / 8));
+	// dst = set->current_texture->addr + (int)(floor(y) * set->current_texture->line_length + floor(x) * (set->current_texture->bits_per_pixel / 8));
 	return (*(unsigned int *)dst);
 }
 
@@ -44,7 +46,6 @@ void draw_wall(t_config *config, t_set_tex *tex_values)
 
 	tex_values->to = to;
 	config->color = 0;
-	tex_values->x = (tex_values->x + tex_values->y) - ((int)(tex_values->x + tex_values->y) / CELL_SIZE) * CELL_SIZE;
     while (tex_values->i < from && tex_values->i < HIGHT)
     {
         my_mlx_pixel_put(config, config->j, tex_values->i, config->ceiling_rgb);
@@ -92,4 +93,44 @@ void render_rays(t_config *config, t_player *player)
 		cast_ray(config, player, ray_angle, (FOV / 2) - ((FOV / 1000) * i));
 		i++;
 	}
+}
+# define WIDTH_MINIMAP 200
+# define HIGH_MINIMAP 200
+
+void	draw_minimap(t_config *config)
+{
+	int	x;
+	int	y;
+	int	color;
+	t_player mini_player;
+	y = 0;
+	int	px = config->player.x - WIDTH_MINIMAP /2;
+	int	py = config->player.y - HIGH_MINIMAP /2;
+	while (y <  HIGH_MINIMAP)
+	{
+		x = 0;
+		px = config->player.x - WIDTH_MINIMAP /2;
+		while (x < WIDTH_MINIMAP)
+		{			
+			color = COLOR_GREEN;
+			if (py < 0 || px < 0)
+				color = COLOR_BLACK;
+			else if (px / CELL_SIZE >= config->map.col_len)
+				color = COLOR_BLACK;
+			else if (py / CELL_SIZE > config->map.row_len)
+				color = COLOR_BLACK;
+			else if (config->map.map[py / CELL_SIZE][px / CELL_SIZE] == '1')
+				color = COLOR_WHITE;
+			else if (config->map.map[py / CELL_SIZE][px / CELL_SIZE] != '0')
+				color = COLOR_BLACK;
+			my_mlx_pixel_put(config, x, y, color);
+			x++;
+			px++;
+		}
+		y++;
+		py++;
+	}
+    mini_player.x = WIDTH_MINIMAP / 2;
+    mini_player.y = HIGH_MINIMAP / 2;
+    draw_player(config, &mini_player);
 }
