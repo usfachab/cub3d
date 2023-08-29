@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_event.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:39:49 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/29 07:35:13 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/29 15:15:38 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ void rotate_player(t_player *player, double angle)
 
 int key_hook(int keycode, void *param)
 {
-	t_config *config = (t_config *)param;
+	t_config	*config;
+
+	config = (t_config *)param;
 	if (keycode == 65307)
 		exit(0);
 	if (keycode == 115)
@@ -49,18 +51,17 @@ bool is_valid_position(t_map *map, int x, int y)
 	return (true);
 }
 
-void move_player(t_player *player, t_map *map, double direction)
+void	move_player(t_player *player, t_map *map, double direction)
 {
 	double	new_x;
 	double	new_y;
+	double	buffer;
 
+	buffer = 1;
 	new_x = player->x + cos(direction) * MOVE_SPEED;
 	new_y = player->y - sin(direction) * MOVE_SPEED;
-	if (is_valid_position(map, new_x, new_y)
-		&& is_valid_position(map, new_x, player->y)
-		&& is_valid_position(map, player->x, new_y))
-	{
+	if (is_valid_position(map, new_x + buffer * cos(direction), player->y))
 		player->x = new_x;
+	if (is_valid_position(map, player->x, new_y - buffer * sin(direction)))
 		player->y = new_y;
-	}
 }

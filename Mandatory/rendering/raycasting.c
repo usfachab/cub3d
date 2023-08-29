@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:31:54 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/29 08:03:11 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/29 09:46:21 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,6 @@ void cast_ray(t_config *config, t_player *player, double angle, double t)
 	angle = remainder(angle, M_PI * 2);
 	if (angle < 0)
 		angle += 2 * M_PI;
-
 	init_ray(&ray, player, angle);
 	initialize_intersections(&horizontal, &vertical);
 	find_horizontal_intersection(config, ray, angle, &horizontal);
@@ -157,137 +156,3 @@ void cast_ray(t_config *config, t_player *player, double angle, double t)
 	draw_wall(config, &tex_values);
 	config->j++;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// void cast_ray(t_config *config, t_player *player, double angle, double t)
-// {
-//     double from;
-//     double to;
-//     double hight;
-//     t_ray ray;
-//     t_intersection horizontal, vertical;
-//     t_texture *current_texture;
-
-//     angle = remainder(angle, M_PI * 2);
-//     if (angle < 0)
-//         angle += 2 * M_PI;
-
-//     init_ray(&ray, player, angle);
-//     initialize_intersections(&horizontal, &vertical);
-//     find_horizontal_intersection(config, ray, angle, &horizontal);
-//     find_vertical_intersection(config, ray, angle, &vertical);
-
-//     horizontal.distance *= cos(t);
-//     vertical.distance *= cos(t);
-
-//     if (horizontal.distance < vertical.distance)
-//     {
-//         hight = get_hight(horizontal.distance);
-//         if (sin(angle) > 0)
-//             current_texture = &config->nt; // North
-//         else
-//             current_texture = &config->st; // South
-//     }
-//     else
-//     {
-//         hight = get_hight(vertical.distance);
-//         if (cos(angle) > 0)
-//             current_texture = &config->wt; // West
-//         else
-//             current_texture = &config->et; // East
-//     }
-//     from_to(&from, &to, hight);
-// 	draw_wall(config, from, to, config->j++);
-// }
-
-// void set_texture_values(t_set_tex *tex, double high, double from, double x, double y, int i, t_texture *current_texture)
-// {
-//     tex->high = high;
-//     tex->from = from;
-//     tex->x = x;
-//     tex->y = y;
-//     tex->i = i;
-//     tex->current_texture = current_texture;
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// void cast_ray(t_config *config, t_player *player, double angle, double t)
-// {
-// 	double	from;
-// 	double	to;
-// 	double	hight;
-// 	t_ray ray;
-// 	t_intersection horizontal, vertical;
-
-// 	angle = remainder(angle, M_PI * 2);
-// 	if (angle < 0)
-// 		angle += 2 * M_PI;
-// 	init_ray(&ray, player, angle);
-// 	printf("%f ====%f\n", ray.ray_x , ray.ray_y);
-// 	initialize_intersections(&horizontal, &vertical);
-// 	find_horizontal_intersection(config, ray, angle, &horizontal);
-// 	find_vertical_intersection(config, ray, angle, &vertical);
-// 	horizontal.distance *= cos(t);
-// 	vertical.distance *= cos(t);
-//     if (horizontal.distance < vertical.distance)
-//     {
-//         hight = get_hight(horizontal.distance);
-//         if (sin(angle) > 0)
-//             config->color = 0xFF0000; // North - Red
-//         else
-//             config->color = 0x00FF00; // South - Green
-//     }
-//     else
-//     {
-//         hight = get_hight(vertical.distance);
-//         if (cos(angle) > 0)
-//             config->color = 0; // West - black
-//         else
-//             config->color = 0xFFFF00; // East - Yellow
-//     }
-//     from_to(&from, &to, hight);
-// 	draw_wall(config, from, to, config->j++);
-// }
