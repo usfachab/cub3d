@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 17:09:22 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/28 15:45:05 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/29 18:01:51 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,9 @@ t_config	initialize_game(char *filename)
 		external_error("Invalid map", EXIT_FAILURE, NULL);
 	if (!setup_texture(&config))
 		external_error("Setup textures", EXIT_FAILURE, config.map.map);
+	if (!setup_animation(&config))
+		external_error("Setup animation", EXIT_FAILURE, config.map.map);
+	printf("color: %d\n", config.floor_rgb);
 	cleanup(&config);
 	return (config);
 }

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:36:38 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/28 22:24:59 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/29 23:34:47 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "includes/cub3d.h"
 
 void init_ray(t_ray *ray, t_player *player, double angle)
 {
@@ -21,16 +21,26 @@ void init_ray(t_ray *ray, t_player *player, double angle)
 }
 int loop_hook_mouse(t_config *config)
 {
+	static int timer = 0;
+
+	if (timer > 20)
+	{
+		config->anime_index++;
+		if (config->anime_index == 6)
+			config->anime_index = 0;
+		timer = 0;
+	}
+    timer++;
     render_rays(config, &config->player);
 	draw_minimap(config);
     mlx_put_image_to_window(config->mlx, config->mlx_win, config->img, 0, 0);
-    return (0);
+	return (0);
 }
 int initialize_graphics(t_config *config)
 {
-	config->mlx = mlx_init();
-	if (!config->mlx)
-		return (0);
+	// config->mlx = mlx_init();
+	// if (!config->mlx)
+	// 	return (0);
 	config->mlx_win = mlx_new_window(config->mlx, WIDTH, HIGHT, "Hello World!");
 	if (!config->mlx_win)
 		return (0);
@@ -63,7 +73,7 @@ int main(int argc, char *argv[])
 	config.map.map[(int)config.player.y][(int)config.player.x] = '0';
 	config.player.x = config.player.x * CELL_SIZE + 20;
 	config.player.y = config.player.y * CELL_SIZE + 20;
-	printf("\n\nx : %f  |  y : %f\n\n map.size: %d\n", config.player.x, config.player.y,config.map.row_len);
+	// printf("\n\nx : %f  |  y : %f\n\n map.size: %d\n", config.player.x, config.player.y,config.map.row_len);
 	if (!initialize_graphics(&config))
 	{
 		fprintf(stderr, "Error initializing graphics.\n");

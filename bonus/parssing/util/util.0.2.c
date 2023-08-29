@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 12:03:23 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/28 14:56:56 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/29 23:20:31 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ void	initiate_textures_with_null(t_config *config)
 	config->player.x = 0;
 	config->player.y = 0;
 	config->player.direction = 0;
+	config->anime_index = 0;
 	config->mlx = mlx_init();
 	if (!config->mlx)
 		external_error("init mlx", EXIT_FAILURE, config->mlx);

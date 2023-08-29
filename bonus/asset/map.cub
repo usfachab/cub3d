@@ -1,7 +1,8 @@
-NO	./parssing/src/Wall-Grass_01_L-128x128.xpm
-SO	./parssing/src/Wall-Roofs_01_L-128x128.xpm
-EA	./parssing/src/Wall-Stone_01_L-128x128.xpm
-WE	./parssing/src/Wall-Tile_01_R-128x128.xpm
+NO	./bonus/parssing/src/Wall-Grass_01_L-128x128.xpm
+SO	./bonus/parssing/src/Wall-Roofs_01_L-128x128.xpm
+EA	./bonus/parssing/src/Wall-Stone_01_L-128x128.xpm
+WE	./bonus/parssing/src/Wall-Tile_01_R-128x128.xpm
+
 C  	69, 179, 224
 F	148, 118, 90
 

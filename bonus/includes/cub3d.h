@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lib.h                                              :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 22:51:25 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/28 22:51:28 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/29 23:19:04 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct s_config
 	t_map		map;
 	t_data		data;
 	t_player	player;
+	t_texture	anime[6];
 	void		*mlx;
 	void		*img;
 	void		*mlx_win;
@@ -95,6 +96,7 @@ typedef struct s_config
 	int			floor_color[3];
 	int			ceiling_color[3];
 	int			last_mouse_x;
+	int			anime_index;
 }	t_config;
 
 // *-------------- UTILS -------------* //
@@ -130,6 +132,10 @@ int			parsing_map(t_config *config);
 t_config	initialize_game(char *filename);
 void		save_row_col_len(t_config *config);
 void		surronded(char **map, int x, int y);
+// ! newlly added by yachaab
+int			setup_animation(t_config *c);
+void		*img(void *mlx, char *pt, int *w, int *h);
+char		*addr(void *img, int *bpp, int *ll, int *endi);
 
 // !--------------- RENDRING -----------------! //
 typedef struct s_intersection {

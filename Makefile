@@ -19,7 +19,10 @@ SRC_REN		= 	main.c rendering/drawing.c \
 				rendering/key_event.c \
 
 SRC_BON		=	main.c  rendering/drawing.c rendering/raycasting.c \
-				rendering/key_event.c 
+				rendering/key_event.c parssing/parse.c parssing/texture.0.0.c \
+				parssing/texture.0.1.c parssing/map.0.0.c parssing/map.0.1.c \
+				parssing/util/ft_split.c parssing/util/util.0.0.c \
+				parssing/util/util.0.1.c parssing/util/util.0.2.c parssing/anim_setup.c
 
 SRC_PAR_PRE	= 	$(addprefix Mandatory/parssing/, $(SRC_PAR))
 
@@ -40,7 +43,7 @@ bonus : $(BONUS)
 $(NAME) : $(OBJ_PAR)  $(OBJ_REN)
 	@$(CC) $(CFLAGS) -o $@ $^ $(MLX_LIB)
 
-$(BONUS) : $(OBJ_BON) $(OBJ_PAR) 
+$(BONUS) : $(OBJ_BON)
 	@$(CC) $(CFLAGS) -o $@ $^ $(MLX_LIB)
 
 %.o : %.c
