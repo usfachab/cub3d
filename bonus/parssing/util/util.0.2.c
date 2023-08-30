@@ -64,7 +64,7 @@ char	valid_elem_handshake(char c)
 
 	i = 0;
 	a = 0;
-	elem = " \n01NSEW";
+	elem = " \n01NSEWD";
 	while (elem[i])
 	{
 		if (c == elem[i])

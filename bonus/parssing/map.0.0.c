@@ -52,7 +52,7 @@ int	valid_map(char **minimap)
 		y = 0;
 		while (minimap[x][y])
 		{
-			if (ft_strchr("0SNEW", minimap[x][y]))
+			if (ft_strchr("0SNEWD", minimap[x][y]))
 				surronded(minimap, x, y);
 			y++;
 		}

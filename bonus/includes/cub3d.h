@@ -72,6 +72,7 @@ typedef struct s_data
 
 typedef struct s_config
 {
+	t_texture	anime[6];
 	t_texture	nt;
 	t_texture	st;
 	t_texture	et;
@@ -80,7 +81,6 @@ typedef struct s_config
 	t_map		map;
 	t_data		data;
 	t_player	player;
-	t_texture	anime[6];
 	void		*mlx;
 	void		*img;
 	void		*mlx_win;

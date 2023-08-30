@@ -89,15 +89,15 @@ double	direction(char c)
 void	surronded(char **map, int x, int y)
 {
 	if (x == 0 || y == 0)
-		external_error("Wall not closed 1", EXIT_FAILURE, map);
+		external_error("Wall not closed", EXIT_FAILURE, map);
 	if (map[x + 1] == NULL || map[x][y + 1] == 0)
-		external_error("Wall not closed 2", EXIT_FAILURE, map);
+		external_error("Wall not closed", EXIT_FAILURE, map);
 	if (map[x][y - 1] == ' ')
-		external_error("Wall not closed 3", EXIT_FAILURE, map);
+		external_error("Wall not closed", EXIT_FAILURE, map);
 	if (map[x][y + 1] == ' ')
-		external_error("Wall not closed 4", EXIT_FAILURE, map);
+		external_error("Wall not closed", EXIT_FAILURE, map);
 	if (map[x - 1][y] == ' ')
-		external_error("Wall not closed 5", EXIT_FAILURE, map);
+		external_error("Wall not closed", EXIT_FAILURE, map);
 	if (map[x + 1][y] == ' ')
-		external_error("Wall not closed 6", EXIT_FAILURE, map);
+		external_error("Wall not closed", EXIT_FAILURE, map);
 }

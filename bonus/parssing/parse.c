@@ -46,6 +46,9 @@ int	setup_texture(t_config *c)
 	c->wt.img = img(c->mlx, c->west_path, &(c->wt.width), &(c->wt.height));
 	c->wt.addr = addr(c->wt.img, &(c->wt.bits_per_pixel), &c->wt.line_length,
 			&(c->wt.endian));
+	c->door.img = img(c->mlx, "./bonus/parssing/src/door.xpm", &(c->door.width), &(c->door.height));
+	c->door.addr = addr(c->door.img, &(c->door.bits_per_pixel), &c->door.line_length,
+			&(c->door.endian));
 	return (1);
 }
 
