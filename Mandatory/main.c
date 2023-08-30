@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:36:38 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/29 07:34:57 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/30 11:49:04 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/cub3d.h"
 
-void init_ray(t_ray *ray, t_player *player, double angle)
+void	init_ray(t_ray *ray, t_player *player, double angle)
 {
 	ray->ray_x = player->x;
 	ray->ray_y = player->y;
@@ -48,19 +48,12 @@ int main(int argc, char *argv[])
 	t_config config;
 
 	if (argc != 2)
-	{
-		fprintf(stderr, "Usage: %s <map_file>\n", argv[0]);
 		return (EXIT_FAILURE);
-	}
 	config = initialize_game(argv[1]);
 	config.player.x = config.player.x * CELL_SIZE + 20;
 	config.player.y = config.player.y * CELL_SIZE + 20;
-	printf("\n\nx : %f  |  y : %f\n\n map.size: %d\n", config.player.x, config.player.y,config.map.row_len);
 	if (!initialize_graphics(&config))
-	{
-		fprintf(stderr, "Error initializing graphics.\n");
 		return (EXIT_FAILURE);
-	}
 	mlx_put_image_to_window(config.mlx, config.mlx_win, config.img, 0, 0);
 	mlx_hook(config.mlx_win, 2, 1, key_hook, &config);
 	mlx_hook(config.mlx_win, 17, 0, exit_game, NULL);

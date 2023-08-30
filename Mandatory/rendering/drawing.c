@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:21:37 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/29 08:41:09 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/30 11:52:32 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ void my_mlx_pixel_put(t_config *config, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-
-
 unsigned int    get_texture_pixel(t_set_tex *set)
 {
 	double x;
@@ -30,18 +28,19 @@ unsigned int    get_texture_pixel(t_set_tex *set)
 
 	dst = "test";
 	y = set->current_texture->height * ((set->i - set->from) / set->high);
-	
 	x = set->current_texture->width * set->x / CELL_SIZE;
 	dst = set->current_texture->addr + ((int)y * set->current_texture->line_length + (int)x * (set->current_texture->bits_per_pixel / 8));
 	return (*(unsigned int *)dst);
 }
 
-void draw_wall(t_config *config, t_set_tex *tex_values)
+void	draw_wall(t_config *config, t_set_tex *tex_values)
 {
-    tex_values->i = 0;
-    double from = tex_values->from;
-    double to = from + tex_values->high;
+    double	from;
+    double	to;
 
+    tex_values->i = 0;
+	from = tex_values->from;
+	to = from + tex_values->high;
 	tex_values->to = to;
 	config->color = 0;
 	tex_values->x = (tex_values->x + tex_values->y) - ((int)(tex_values->x + tex_values->y) / CELL_SIZE) * CELL_SIZE;
@@ -52,7 +51,6 @@ void draw_wall(t_config *config, t_set_tex *tex_values)
     }
     while (tex_values->i < to && tex_values->i < HIGHT)
     {
-		//you must call your function here and set the value on config color so you must return unsigned int
         config->color = get_texture_pixel(tex_values);
 		my_mlx_pixel_put(config, config->j, tex_values->i, config->color);
         tex_values->i++;
@@ -81,7 +79,7 @@ void draw_player(t_config *config, t_player *player)
 	}
 }
 
-void render_rays(t_config *config, t_player *player)
+void	render_rays(t_config *config, t_player *player)
 {
 	int i = 0;
 	double ray_angle;

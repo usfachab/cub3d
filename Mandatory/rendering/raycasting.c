@@ -6,7 +6,7 @@
 /*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:31:54 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/29 09:46:21 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/30 11:45:45 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ double	get_hight(double dis)
 	double	hight;
 
 	r_dis = (HIGHT / 2);
-	hight = (r_dis * 40) / dis;
+	hight = (r_dis * CELL_SIZE) / dis;
 	return (hight);
 }
 
@@ -102,7 +102,6 @@ void	find_vertical_intersection(t_config *config, t_ray ray, double angle, t_int
 		if (xinter < 0 || yinter < 0 || xinter >= config->map.col_len * CELL_SIZE
 			|| yinter >= config->map.row_len * CELL_SIZE)
 			break ;
-		
 		if (config->map.map[(int)yinter/ CELL_SIZE][(int)xinter / CELL_SIZE] == '1')
 			break;
 		if (stepx < 0 && xinter >= CELL_SIZE && config->map.map[(int)yinter / CELL_SIZE][(int)xinter / CELL_SIZE - 1] == '1')
@@ -116,7 +115,7 @@ void	find_vertical_intersection(t_config *config, t_ray ray, double angle, t_int
 							  (ray.ray_y - vertical->y) * (ray.ray_y - vertical->y));
 }
 
-void cast_ray(t_config *config, t_player *player, double angle, double t)
+void	cast_ray(t_config *config, t_player *player, double angle, double t)
 {
 	t_ray ray;
 	t_intersection horizontal, vertical;

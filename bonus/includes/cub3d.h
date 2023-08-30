@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 22:51:25 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/29 23:19:04 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/30 15:51:45 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@
 # define FOV 1.0471975511965976
 # define TURN_ANGLE 0.05235987755982988
 #define MOUSE_SPEED 0.05
+# define WIDTH_MINIMAP 200
+# define HIGH_MINIMAP 200
 
 // !--------------- PARSING -----------------! //
 typedef struct s_texture
@@ -74,6 +76,7 @@ typedef struct s_config
 	t_texture	st;
 	t_texture	et;
 	t_texture	wt;
+	t_texture	door;
 	t_map		map;
 	t_data		data;
 	t_player	player;
@@ -97,6 +100,7 @@ typedef struct s_config
 	int			ceiling_color[3];
 	int			last_mouse_x;
 	int			anime_index;
+	static int	flage;
 }	t_config;
 
 // *-------------- UTILS -------------* //
@@ -172,6 +176,15 @@ typedef struct s_ray
 	double	ray_dy;
 	double	distance;
 }	t_ray;
+
+typedef struct s_draw_data
+{
+    int	x;
+	int	y;
+	int	px;
+	int	py;
+}	t_draw_data;
+
 // *----------------- DRAW -----------------* //
 void		draw_player(t_config *config, t_player *player);
 void		draw_wall(t_config *config, t_set_tex *tex_values);
