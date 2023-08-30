@@ -6,7 +6,7 @@
 /*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:39:49 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/30 16:25:18 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/30 18:00:26 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	key_hook(int keycode, void *param)
 	t_config	*config;
 
 	config = (t_config *)param;
+	printf("%d\n",keycode);
 	if (keycode == 65307)
 		exit(0);
 	if (keycode == 115)
@@ -32,6 +33,7 @@ int	key_hook(int keycode, void *param)
 		move_player(&config->player, &config->map, config->player.direction - M_PI/2);
 	if (keycode == 97)
 		move_player(&config->player, &config->map, config->player.direction + M_PI/2);
+	// if (keycode == 101) //E
 	if (keycode == 65363)
 		rotate_player(&config->player, -TURN_ANGLE);
 	if (keycode == 65361)
@@ -71,7 +73,6 @@ int	mouse_move(int x, int y, void *param)
 
 	(void)y;
 	config = (t_config *)param;
-	// if (config->map.map[y / CELL_SIZE][x /CELL_SIZE] == 'D')
 		
 	if (x < config->last_mouse_x)
 		rotate_player(&config->player, MOUSE_SPEED);

@@ -6,7 +6,7 @@
 /*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 22:51:25 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/30 16:25:04 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/30 16:27:30 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ typedef struct s_config
 	int			ceiling_color[3];
 	int			last_mouse_x;
 	int			anime_index;
-	int	flage;
 }	t_config;
 
 // *-------------- UTILS -------------* //
@@ -142,11 +141,13 @@ void		*img(void *mlx, char *pt, int *w, int *h);
 char		*addr(void *img, int *bpp, int *ll, int *endi);
 
 // !--------------- RENDRING -----------------! //
-typedef struct s_intersection {
+typedef struct s_intersection
+{
 	double	x;
 	double	y;
 	double	distance;
 	int		hit;
+	int		flage;
 }	t_intersection;
 enum Colors
 {

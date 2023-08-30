@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.0.0.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 17:34:09 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/28 13:42:58 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/30 18:07:09 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	valid_map(char **minimap)
 		y = 0;
 		while (minimap[x][y])
 		{
-			if (ft_strchr("0SNEW", minimap[x][y]))
+			if (ft_strchr("0SNEWD", minimap[x][y]))
 				surronded(minimap, x, y);
 			y++;
 		}

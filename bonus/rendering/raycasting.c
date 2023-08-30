@@ -6,7 +6,7 @@
 /*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:31:54 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/30 15:53:37 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/30 18:01:52 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,12 @@ void	initialize_intersections(t_intersection *horizontal, t_intersection *vertic
 	horizontal->y = 0;
 	horizontal->distance = INT_MAX;
 	horizontal->hit = 0;
+	horizontal->flage = 0;
 	vertical->x = 0;
 	vertical->y = 0;
 	vertical->distance = INT_MAX;
 	vertical->hit = 0;
+	vertical->flage = 0;
 }
 
 typedef struct s_intersection_params
@@ -90,12 +92,12 @@ void find_horizontal_intersection(t_config *config, t_ray ray, double angle, t_i
 			break ;
 		if (config->map.map[(int)params.yinter/ CELL_SIZE][(int)params.xinter / CELL_SIZE] == 'D')
 		{
-			config->flage = 1;
+			horizontal->flage = 1;
 			break ;
 		}
 		if (params.stepy < 0 && params.yinter >= CELL_SIZE && config->map.map[(int)params.yinter/ CELL_SIZE - 1][(int)params.xinter / CELL_SIZE] == 'D')
 		{
-			config->flage = 1;
+			horizontal->flage = 1;
 			break ;
 		}
 		if (config->map.map[(int)params.yinter/ CELL_SIZE][(int)params.xinter / CELL_SIZE] == '1')
@@ -123,12 +125,12 @@ void find_vertical_intersection(t_config *config, t_ray ray, double angle, t_int
 			break ;
 		if (config->map.map[(int)params.yinter/ CELL_SIZE][(int)params.xinter / CELL_SIZE] == 'D')
 		{
-			config->flage = 1;
+			vertical->flage = 1;
 			break ;
 		}
 		if (params.stepx < 0 && params.xinter >= CELL_SIZE && config->map.map[(int)params.yinter / CELL_SIZE][(int)params.xinter / CELL_SIZE - 1] == 'D')
 		{
-			config->flage = 1;
+			vertical->flage = 1;
 			break ;
 		}
 		if (config->map.map[(int)params.yinter/ CELL_SIZE][(int)params.xinter / CELL_SIZE] == '1')
@@ -165,7 +167,9 @@ void	cast_ray(t_config *config, t_player *player, double angle, double t)
 		tex_values.y = horizontal.y;
 		tex_values.high = get_hight(horizontal.distance);
 		tex_values.from = (HIGHT / 2) - tex_values.high / 2;
-		if (sin(angle) > 0)
+		if (horizontal.flage)
+			tex_values.current_texture = &config->door;
+		else if (sin(angle) > 0)
 			tex_values.current_texture = &(config->nt); // Nort
 		else
 			tex_values.current_texture = &config->st; // South
@@ -176,10 +180,12 @@ void	cast_ray(t_config *config, t_player *player, double angle, double t)
 		tex_values.y = vertical.y;
 		tex_values.high = get_hight(vertical.distance);
 		tex_values.from = (HIGHT / 2) - tex_values.high / 2;
-		if (cos(angle) > 0)
-			tex_values.current_texture = &config->et; // West
+		if (vertical.flage)
+			tex_values.current_texture = &config->door;
+		else if (cos(angle) > 0)
+				tex_values.current_texture = &config->et; // West
 		else
-			tex_values.current_texture = &config->wt; // East
+				tex_values.current_texture = &config->wt; // East
 	}
 	draw_wall(config, &tex_values);
 	config->j++;

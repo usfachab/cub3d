@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util.0.2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 12:03:23 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/29 23:20:31 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/30 18:05:25 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	valid_elem_handshake(char c)
 
 	i = 0;
 	a = 0;
-	elem = " \n01NSEW";
+	elem = " \n01NSEWD";
 	while (elem[i])
 	{
 		if (c == elem[i])

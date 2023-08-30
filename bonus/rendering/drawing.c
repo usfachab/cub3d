@@ -6,7 +6,7 @@
 /*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:21:37 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/30 14:46:41 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/30 18:03:48 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,10 @@ int	minimap_color(t_config *config, int px, int py)
 		color = COLOR_BLACK;
 	else if (config->map.map[py / CELL_SIZE][px / CELL_SIZE] == '1')
 		color = COLOR_WHITE;
+	else if (config->map.map[py / CELL_SIZE][px / CELL_SIZE] == 'D')
+		color = COLOR_RED;
+	else if (config->map.map[py / CELL_SIZE][px / CELL_SIZE] == 'R')
+		color = COLOR_BLUE;
 	else if (config->map.map[py / CELL_SIZE][px / CELL_SIZE] != '0')
 		color = COLOR_BLACK;
 	return (color);
