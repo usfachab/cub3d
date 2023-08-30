@@ -6,7 +6,7 @@
 /*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:31:54 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/30 18:01:52 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/30 21:08:12 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,7 @@ void	cast_ray(t_config *config, t_player *player, double angle, double t)
 	t_intersection horizontal, vertical;
 	t_set_tex tex_values;
 
+	tex_values.flage = 0;
 	angle = remainder(angle, M_PI * 2);
 	if (angle < 0)
 		angle += 2 * M_PI;
@@ -167,6 +168,7 @@ void	cast_ray(t_config *config, t_player *player, double angle, double t)
 		tex_values.y = horizontal.y;
 		tex_values.high = get_hight(horizontal.distance);
 		tex_values.from = (HIGHT / 2) - tex_values.high / 2;
+		tex_values.flage = horizontal.flage;
 		if (horizontal.flage)
 			tex_values.current_texture = &config->door;
 		else if (sin(angle) > 0)
@@ -180,6 +182,7 @@ void	cast_ray(t_config *config, t_player *player, double angle, double t)
 		tex_values.y = vertical.y;
 		tex_values.high = get_hight(vertical.distance);
 		tex_values.from = (HIGHT / 2) - tex_values.high / 2;
+		tex_values.flage = vertical.flage;
 		if (vertical.flage)
 			tex_values.current_texture = &config->door;
 		else if (cos(angle) > 0)
