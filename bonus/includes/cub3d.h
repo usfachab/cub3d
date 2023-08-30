@@ -32,7 +32,7 @@
 # define PLAYER_SIZE 10
 # define FOV 1.0471975511965976
 # define TURN_ANGLE 0.05235987755982988
-#define MOUSE_SPEED 0.05
+# define MOUSE_SPEED 0.05
 # define WIDTH_MINIMAP 200
 # define HIGH_MINIMAP 200
 
@@ -149,6 +149,7 @@ typedef struct s_intersection
 	int		hit;
 	int		flage;
 }	t_intersection;
+
 enum Colors
 {
     COLOR_BLACK = 0,
