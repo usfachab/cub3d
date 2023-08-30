@@ -6,7 +6,7 @@
 /*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 22:51:25 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/30 15:51:45 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/30 16:25:04 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ typedef struct s_config
 	int			ceiling_color[3];
 	int			last_mouse_x;
 	int			anime_index;
-	static int	flage;
+	int	flage;
 }	t_config;
 
 // *-------------- UTILS -------------* //

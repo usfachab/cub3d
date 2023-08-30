@@ -6,7 +6,7 @@
 /*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:39:49 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/30 15:54:47 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/30 16:25:18 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	mouse_move(int x, int y, void *param)
 
 	(void)y;
 	config = (t_config *)param;
-	if (config->map.map[y / CELL_SIZE][x /CELL_SIZE] == 'D')
+	// if (config->map.map[y / CELL_SIZE][x /CELL_SIZE] == 'D')
 		
 	if (x < config->last_mouse_x)
 		rotate_player(&config->player, MOUSE_SPEED);
