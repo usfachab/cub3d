@@ -50,7 +50,7 @@ $(BONUS) : $(OBJ_BON)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 git : 
-	make fclean && git add . && git commit -m "ADD DOOR TEXTURE" && git push -f origin master
+	make fclean && git add . && git commit -m "ADD DOOR TEXTURE | SEGV MAY BE" && git push -f origin master
 
 clean :
 	@rm -fr $(OBJ_PAR) $(OBJ_REN) $(OBJ_BON)
