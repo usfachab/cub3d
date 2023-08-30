@@ -6,7 +6,7 @@
 /*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:39:49 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/30 21:03:31 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/30 21:53:29 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	key_hook(int keycode, void *param)
 		move_player(&config->player, &config->map, config->player.direction - M_PI/2);
 	if (keycode == 97)
 		move_player(&config->player, &config->map, config->player.direction + M_PI/2);
-	if (keycode == 101) //E
+	if (keycode == 101)
 		door(&config->player, &config->map, config->player.direction);
 	if (keycode == 65363)
 		rotate_player(&config->player, -TURN_ANGLE);
@@ -75,7 +75,6 @@ void	move_player(t_player *player, t_map *map, double direction)
 {
 	double			new_x;
 	double			new_y;
-	// const double	buffer = 1;
 
 	new_x = player->x + cos(direction) * MOVE_SPEED;
 	new_y = player->y - sin(direction) * MOVE_SPEED;
