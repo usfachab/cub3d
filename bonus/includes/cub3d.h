@@ -6,7 +6,7 @@
 /*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 22:51:25 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/30 16:27:30 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/30 21:06:51 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,6 +167,7 @@ typedef struct s_set_tex
 	double		high;
 	double		from;
 	int			i;
+	int		flage;
 }	t_set_tex;
 
 typedef struct s_ray

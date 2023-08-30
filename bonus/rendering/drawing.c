@@ -6,7 +6,7 @@
 /*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:21:37 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/30 18:03:48 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/30 21:09:04 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,12 @@ unsigned int    get_texture_pixel(t_config *config, t_set_tex *set)
 	double	y;
 	char	*dst;
 
-	dst = "test";
 	y = config->anime[config->anime_index].height * ((set->i - set->from) / set->high);
 	x = (set->x + set->y) - ((int)(set->x + set->y) / CELL_SIZE) * CELL_SIZE;
 	x = config->anime[config->anime_index].width * x / CELL_SIZE;
 	dst = config->anime[config->anime_index].addr + ((int)y * config->anime[config->anime_index].line_length + (int)x * (config->anime[config->anime_index].bits_per_pixel / 8));
 	
-	if ((*(unsigned int *) dst) >> 24)
+	if ((*(unsigned int *) dst) >> 24 || set->flage)
 	{
 		y = set->current_texture->height * ((set->i - set->from) / set->high);
 		x = (set->x + set->y) - ((int)(set->x + set->y) / CELL_SIZE) * CELL_SIZE;
