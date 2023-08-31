@@ -79,5 +79,6 @@ int	main(int argc, char *argv[])
 	mlx_put_image_to_window(config.mlx, config.mlx_win, config.img, 0, 0);
 	mlx_loop_hook(config.mlx, loop_hook_mouse, &config);
 	mlx_loop(config.mlx);
+	freeall(config.map.map);
 	return (EXIT_SUCCESS);
 }

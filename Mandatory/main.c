@@ -22,9 +22,6 @@ void	init_ray(t_ray *ray, t_player *player, double angle)
 
 int	initialize_graphics(t_config *config)
 {
-	config->mlx = mlx_init();
-	if (!config->mlx)
-		return (0);
 	config->mlx_win = mlx_new_window(config->mlx, WIDTH, HIGHT, "Hello World!");
 	if (!config->mlx_win)
 		return (0);
@@ -42,6 +39,18 @@ int	initialize_graphics(t_config *config)
 int	exit_game(void)
 {
 	exit(1);
+}
+
+void	free_config_resources(t_config *config)
+{
+	dprintf(2, "OK\n");
+	(void)config;
+	freeall(config->map.map);
+	// free(config->nt.addr);
+	// free(config->nt.img);
+	mlx_destroy_image(config->mlx, config->img);
+	mlx_destroy_window(config->mlx, config->mlx_win);
+	exit(EXIT_SUCCESS);
 }
 
 int	main(int argc, char *argv[])

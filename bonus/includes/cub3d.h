@@ -135,10 +135,7 @@ int				parsing_map(t_config *config);
 t_config		initialize_game(char *filename);
 void			save_row_col_len(t_config *config);
 void			surronded(char **map, int x, int y);
-// ! newlly 	added by yachaab
 int				setup_animation(t_config *c);
-void			*img(void *mlx, char *pt, int *w, int *h);
-char			*addr(void *img, int *bpp, int *ll, int *endi);
 
 // !--------------- RENDRING -----------------! //
 typedef struct s_intersection
@@ -236,7 +233,6 @@ void			choose_vertical_texture(t_set_tex *tex,
 					t_intersection *vertical, t_config *config, double *angle);
 void			set_texture_values(t_set_tex *tex_values,
 					t_intersection *intersection);
-
 // *---------------- HOOKS ----------------* //
 int				key_hook(int keycode, void *param);
 int				initialize_graphics(t_config *config);
