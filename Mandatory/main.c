@@ -6,7 +6,7 @@
 /*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:36:38 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/31 14:04:17 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/31 14:48:48 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,6 @@ int	exit_game(void)
 	exit(1);
 }
 
-void	free_config_resources(t_config *config)
-{
-	dprintf(2, "OK\n");
-	(void)config;
-	freeall(config->map.map);
-	// free(config->nt.addr);
-	// free(config->nt.img);
-	mlx_destroy_image(config->mlx, config->img);
-	mlx_destroy_window(config->mlx, config->mlx_win);
-	exit(EXIT_SUCCESS);
-}
 
 int	main(int argc, char *argv[])
 {

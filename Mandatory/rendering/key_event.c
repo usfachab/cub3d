@@ -6,7 +6,7 @@
 /*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:39:49 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/31 14:44:54 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/31 14:48:22 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,7 @@ void	rotate_player(t_player *player, double angle)
 
 void	free_config_resources(t_config *config)
 {
-	int	i;
-
-	i = 0;
-	if (config->map.map)
-	{
-		while (i < config->map.row_len)
-		{
-			// if (config->map.map[i])
-				free(config->map.map[i]);
-			i++;
-		}
-		free(config->map.map);
-	}
+	freeall(config->map.map);
 	mlx_destroy_window(config->mlx, config->mlx_win);
 	exit(1);
 }

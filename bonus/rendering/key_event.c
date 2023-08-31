@@ -6,7 +6,7 @@
 /*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:39:49 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/31 14:42:59 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/31 14:54:17 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,24 +36,6 @@ void	door(t_player *player, t_map *map, double direction)
 	}
 }
 
-void	free_config_resources(t_config *config)
-{
-	int	i;
-
-	i = 0;
-	if (config->map.map)
-	{
-		while (config->map.map[i])
-		{
-			//if (config->map.map[i])
-				free(config->map.map[i]);
-			i++;
-		}
-		free(config->map.map);
-	}
-	mlx_destroy_window(config->mlx, config->mlx_win);
-	exit(1);
-}
 int	key_hook(int keycode, void *param)
 {
 	t_config	*config;
