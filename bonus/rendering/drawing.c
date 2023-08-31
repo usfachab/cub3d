@@ -6,40 +6,11 @@
 /*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:21:37 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/30 21:09:04 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/31 08:38:26 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-void my_mlx_pixel_put(t_config *config, int x, int y, int color)
-{
-	char *dst;
-
-	dst = config->data.addr + (y * config->data.line_length + x * (config->data.bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
-}
-
-unsigned int    get_texture_pixel(t_config *config, t_set_tex *set)
-{
-	double	x;
-	double	y;
-	char	*dst;
-
-	y = config->anime[config->anime_index].height * ((set->i - set->from) / set->high);
-	x = (set->x + set->y) - ((int)(set->x + set->y) / CELL_SIZE) * CELL_SIZE;
-	x = config->anime[config->anime_index].width * x / CELL_SIZE;
-	dst = config->anime[config->anime_index].addr + ((int)y * config->anime[config->anime_index].line_length + (int)x * (config->anime[config->anime_index].bits_per_pixel / 8));
-	
-	if ((*(unsigned int *) dst) >> 24 || set->flage)
-	{
-		y = set->current_texture->height * ((set->i - set->from) / set->high);
-		x = (set->x + set->y) - ((int)(set->x + set->y) / CELL_SIZE) * CELL_SIZE;
-		x = set->current_texture->width * x / CELL_SIZE;
-		dst = set->current_texture->addr + ((int)y * set->current_texture->line_length + (int)x * (set->current_texture->bits_per_pixel / 8));
-	}
-	return (*(unsigned int *)dst);
-}
 
 void	draw_wall(t_config *config, t_set_tex *tex_values)
 {
@@ -47,7 +18,7 @@ void	draw_wall(t_config *config, t_set_tex *tex_values)
 	double	to;
 
 	tex_values->i = 0;
-	to  = 0;
+	to = 0;
 	tex_values->to = to;
 	from = tex_values->from;
 	to = from + tex_values->high;
@@ -74,12 +45,13 @@ void	draw_player(t_config *config, t_player *player)
 {
 	int	player_size;
 	int	y;
+	int	x;
 
 	player_size = PLAYER_SIZE;
 	y = player->y - player_size / 2;
 	while (y <= player->y + player_size / 2)
 	{
-		int x = player->x - player_size / 2;
+		x = player->x - player_size / 2;
 		while (x <= player->x + player_size / 2)
 		{
 			my_mlx_pixel_put(config, x, y, 0xFF0000);

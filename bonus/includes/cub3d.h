@@ -6,7 +6,7 @@
 /*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 22:51:25 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/30 21:06:51 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/31 09:33:53 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,10 +188,19 @@ typedef struct s_draw_data
 	int	py;
 }	t_draw_data;
 
+typedef struct s_intersection_params
+{
+	double	xinter;
+	double	yinter;
+	double	stepx;
+	double	stepy;
+}	t_intersection_params;
+
 // *----------------- DRAW -----------------* //
 void		draw_player(t_config *config, t_player *player);
 void		draw_wall(t_config *config, t_set_tex *tex_values);
 void		my_mlx_pixel_put(t_config *config, int x, int y, int color);
+unsigned int	get_texture_pixel(t_config *config, t_set_tex *set);
 // *--------------- RAY CAST ---------------* //
 double		get_hight(double dis);
 void		render_rays(t_config *config, t_player *player);
