@@ -41,6 +41,18 @@ int	exit_game(void)
 	exit(1);
 }
 
+void	free_config_resources(t_config *config)
+{
+	dprintf(2, "OK\n");
+	(void)config;
+	freeall(config->map.map);
+	// free(config->nt.addr);
+	// free(config->nt.img);
+	mlx_destroy_image(config->mlx, config->img);
+	mlx_destroy_window(config->mlx, config->mlx_win);
+	exit(EXIT_SUCCESS);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_config	config;
