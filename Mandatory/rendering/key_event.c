@@ -6,7 +6,7 @@
 /*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:39:49 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/31 13:58:47 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/31 14:44:54 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	free_config_resources(t_config *config)
 	{
 		while (i < config->map.row_len)
 		{
-			if (config->map.map[i])
+			// if (config->map.map[i])
 				free(config->map.map[i]);
 			i++;
 		}
