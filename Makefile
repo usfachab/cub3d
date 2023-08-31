@@ -53,7 +53,7 @@ $(BONUS) : $(OBJ_BON)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 git : 
-	make fclean && git add . && git commit -m "LEAK HANDLING" && git push -f origin master
+	make fclean && git add . && git commit -m "LEAK HANDLINGa" && git push -f origin master
 
 clean :
 	@rm -fr $(OBJ_PAR) $(OBJ_REN) $(OBJ_BON)
