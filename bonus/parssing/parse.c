@@ -6,7 +6,7 @@
 /*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 17:09:22 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/31 14:52:56 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/31 17:27:24 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ t_config	initialize_game(char *filename)
 	cleanup(&config);
 	return (config);
 }
+
 void	free_config_resources(t_config *config)
 {
 	freeall(config->map.map);
