@@ -8,7 +8,7 @@ MLX_DIR		=	/nfs/homes/yachaab/Desktop/minilibx-linux
 
 MLX_LIB		=	-L $(MLX_DIR) -lmlx -lXext -lX11 -lm
 
-CFLAGS		= 	-Werror -Wall -Wextra -fsanitize=address -g3
+CFLAGS		= 	-Werror -Wall -Wextra #-fsanitize=address -g3
 
 SRC_PAR		=	parse.c texture.0.0.c texture.0.1.c map.0.0.c map.0.1.c \
 				util/ft_split.c util/util.0.0.c util/util.0.1.c util/util.0.2.c
@@ -26,8 +26,6 @@ SRC_BON		=	main.c  rendering/init_inter.c rendering/find_intersections.c\
 				parssing/texture.0.1.c parssing/map.0.0.c parssing/map.0.1.c \
 				parssing/util/ft_split.c parssing/util/util.0.0.c \
 				parssing/util/util.0.1.c parssing/util/util.0.2.c parssing/setup_texture.c
-
-#rendering/find_intersections.c rendering/init_inter.c
 
 SRC_PAR_PRE	= 	$(addprefix Mandatory/parssing/, $(SRC_PAR))
 
