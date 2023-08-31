@@ -6,7 +6,7 @@
 /*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:36:38 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/30 11:49:04 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/31 11:38:45 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,32 +20,30 @@ void	init_ray(t_ray *ray, t_player *player, double angle)
 	ray->ray_dy = sin(angle);
 }
 
-int initialize_graphics(t_config *config)
+int	initialize_graphics(t_config *config)
 {
-	config->mlx = mlx_init();
-	if (!config->mlx)
-		return (0);
 	config->mlx_win = mlx_new_window(config->mlx, WIDTH, HIGHT, "Hello World!");
 	if (!config->mlx_win)
 		return (0);
 	config->img = mlx_new_image(config->mlx, WIDTH, HIGHT);
 	if (!config->img)
 		return (0);
-	config->data.addr = mlx_get_data_addr(config->img, &config->data.bits_per_pixel, &config->data.line_length, &config->data.endian);
+	config->data.addr = mlx_get_data_addr(config->img,
+			&config->data.bits_per_pixel, &config->data.line_length,
+			&config->data.endian);
 	if (!config->data.addr)
 		return (0);
 	return (1);
 }
 
-int exit_game(void)
+int	exit_game(void)
 {
 	exit(1);
 }
 
-
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
-	t_config config;
+	t_config	config;
 
 	if (argc != 2)
 		return (EXIT_FAILURE);

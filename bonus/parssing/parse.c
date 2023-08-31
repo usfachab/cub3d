@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 17:09:22 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/29 18:01:51 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/31 12:12:54 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ t_config	initialize_game(char *filename)
 		external_error("Setup textures", EXIT_FAILURE, config.map.map);
 	if (!setup_animation(&config))
 		external_error("Setup animation", EXIT_FAILURE, config.map.map);
-	printf("color: %d\n", config.floor_rgb);
 	cleanup(&config);
 	return (config);
 }

@@ -14,11 +14,14 @@ SRC_PAR		=	parse.c texture.0.0.c texture.0.1.c map.0.0.c map.0.1.c \
 				util/ft_split.c util/util.0.0.c util/util.0.1.c util/util.0.2.c
 			
 
-SRC_REN		= 	main.c rendering/drawing.c \
+SRC_REN		= 	main.c rendering/find_intersections.c \
+				rendering/intersection_updates.c \
+				rendering/init_inter.c rendering/drawing.c \
 				rendering/raycasting.c \
 				rendering/key_event.c \
 
-SRC_BON		=	main.c  rendering/drawing.c rendering/raycasting.c \
+SRC_BON		=	main.c  rendering/init_inter.c rendering/find_intersections.c\
+				rendering/put_pixel.c rendering/drawing.c rendering/raycasting.c \
 				rendering/key_event.c parssing/parse.c parssing/texture.0.0.c \
 				parssing/texture.0.1.c parssing/map.0.0.c parssing/map.0.1.c \
 				parssing/util/ft_split.c parssing/util/util.0.0.c \
@@ -50,7 +53,7 @@ $(BONUS) : $(OBJ_BON)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 git : 
-	make fclean && git add . && git commit -m "ADD DOOR TEXTURE | BONUS -> OK | NORM PARSSING -> OK | ON TESTING PHASE" && git push -f origin master
+	make fclean && git add . && git commit -m "LAST PAHE -> TESTING PHASE" && git push -f origin master
 
 clean :
 	@rm -fr $(OBJ_PAR) $(OBJ_REN) $(OBJ_BON)
