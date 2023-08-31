@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 22:51:25 by yachaab           #+#    #+#             */
-/*   Updated: 2023/08/29 07:33:00 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/08/31 11:40:53 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define PLAYER_SIZE 10
 # define FOV 1.0471975511965976
 # define TURN_ANGLE 0.05235987755982988
-#define MOUSE_SPEED 0.05
+# define MOUSE_SPEED 0.05
 
 // !--------------- PARSING -----------------! //
 typedef struct s_texture
@@ -138,13 +138,14 @@ typedef struct s_intersection {
 	double	distance;
 	int		hit;
 }	t_intersection;
-enum Colors
+
+enum e_Colors
 {
-    COLOR_BLACK = 0,
-    COLOR_WHITE = 0xFFFFFF,
-    COLOR_RED = 0xFF0000,
-    COLOR_GREEN = 0x00FF00,
-    COLOR_BLUE = 0x0000FF
+	COLOR_BLACK = 0,
+	COLOR_WHITE = 0xFFFFFF,
+	COLOR_RED = 0xFF0000,
+	COLOR_GREEN = 0x00FF00,
+	COLOR_BLUE = 0x0000FF
 };
 
 typedef struct s_set_tex
@@ -166,6 +167,15 @@ typedef struct s_ray
 	double	ray_dy;
 	double	distance;
 }	t_ray;
+
+typedef struct s_intersection_params
+{
+	double	xinter;
+	double	yinter;
+	double	stepx;
+	double	stepy;
+}	t_intersection_params;
+
 // *----------------- DRAW -----------------* //
 void		draw_player(t_config *config, t_player *player);
 void		draw_wall(t_config *config, t_set_tex *tex_values);
@@ -183,6 +193,27 @@ void		find_vertical_intersection(t_config *config, t_ray ray,
 				double angle, t_intersection *vertical);
 void		find_horizontal_intersection(t_config *config, t_ray ray,
 				double angle, t_intersection *horizontal);
+double		compute_distance(t_ray ray, double x, double y);
+void		fishblow(t_intersection *horizontal,
+				t_intersection *vertical, double *t);
+int			check_horizontal_map_hit(t_intersection_params params,
+				t_config *config);
+int			check_vertical_map_hit(t_intersection_params params,
+				t_config *config);
+void		update_vertical_values(t_ray ray, t_intersection *vertical,
+				t_intersection_params params);
+void		update_horizontal_values(t_ray ray, t_intersection *horizontal,
+				t_intersection_params params);
+void		init_horizontal_values(t_ray ray, double angle,
+				t_intersection_params *params);
+void		init_vertical_values(t_ray ray, double angle,
+				t_intersection_params *params);
+void		choose_horizontal_texture(t_set_tex *tex,
+				t_config *config, double *angle);
+void		choose_vertical_texture(t_set_tex *tex,
+				t_config *config, double *angle);
+void		set_texture_values(t_set_tex *tex_values,
+				t_intersection *intersection);
 // *---------------- HOOKS ----------------* //
 int			key_hook(int keycode, void *param);
 int			initialize_graphics(t_config *config);
@@ -191,6 +222,4 @@ bool		is_valid_position(t_map *map, int x, int y);
 void		rotate_player(t_player *player, double angle);
 void		init_ray(t_ray *ray, t_player *player, double angle);
 void		move_player(t_player *player, t_map *map, double direction);
-// int mouse_move(int x, int y, void *param);
-// void    draw_minimap(t_config *config);
 #endif

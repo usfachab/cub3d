@@ -6,7 +6,7 @@
 /*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:39:49 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/31 10:01:47 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/31 10:59:58 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,10 @@ void	move_player(t_player *player, t_map *map, double direction)
 
 	new_x = player->x + cos(direction) * MOVE_SPEED;
 	new_y = player->y - sin(direction) * MOVE_SPEED;
-	if (is_valid_position(map, new_x + 3 * ((cos(direction) > 0) - (cos(direction) < 0)), player->y))
+	if (is_valid_position(map, new_x + 3 * ((cos(direction) > 0)
+				- (cos(direction) < 0)), player->y))
 		player->x = new_x;
-	if (is_valid_position(map, player->x, new_y - 3 * ((sin(direction) > 0) - (sin(direction) < 0))))
+	if (is_valid_position(map, player->x, new_y - 3 * ((sin(direction) > 0)
+				- (sin(direction) < 0))))
 		player->y = new_y;
 }
