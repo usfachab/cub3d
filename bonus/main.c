@@ -6,7 +6,7 @@
 /*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:36:38 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/31 12:12:34 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/31 19:05:52 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	main(int argc, char *argv[])
 	mlx_put_image_to_window(config.mlx, config.mlx_win, config.img, 0, 0);
 	mlx_hook(config.mlx_win, 2, 1, key_hook, &config);
 	mlx_hook(config.mlx_win, 17, 0, exit_game, NULL);
-	mlx_hook(config.mlx_win, 6, 1L << 6, mouse_move, &config);
+	mlx_hook(config.mlx_win, 6, 64, mouse_move, &config);
 	mlx_put_image_to_window(config.mlx, config.mlx_win, config.img, 0, 0);
 	mlx_loop_hook(config.mlx, loop_hook_mouse, &config);
 	mlx_loop(config.mlx);
