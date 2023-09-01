@@ -4,11 +4,11 @@ NAME		=	cub3D
 
 BONUS		=	cub3D_bonus
 
-MLX_DIR		=	/nfs/homes/yachaab/Desktop/minilibx-linux
+MLX_DIR		=	/nfs/homes/yachaab/Desktop/minilibx
 
-MLX_LIB		=	-L $(MLX_DIR) -lmlx -lXext -lX11 -lm
+MLX_LIB		=	-L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 
-CFLAGS		= 	-Werror -Wall -Wextra #-fsanitize=address -g3
+CFLAGS		= 	-Werror -Wall -Wextra -g3 #-fsanitize=address
 
 SRC_PAR		=	parse.c texture.0.0.c texture.0.1.c map.0.0.c map.0.1.c \
 				util/ft_split.c util/util.0.0.c util/util.0.1.c util/util.0.2.c

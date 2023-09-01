@@ -43,13 +43,10 @@ int	exit_game(void)
 
 void	free_config_resources(t_config *config)
 {
-	dprintf(2, "OK\n");
-	(void)config;
 	freeall(config->map.map);
-	// free(config->nt.addr);
-	// free(config->nt.img);
 	mlx_destroy_image(config->mlx, config->img);
 	mlx_destroy_window(config->mlx, config->mlx_win);
+	free(config->mlx);
 	exit(EXIT_SUCCESS);
 }
 
