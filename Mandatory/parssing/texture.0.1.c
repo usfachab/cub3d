@@ -98,7 +98,10 @@ char	*store_texture(char *path, char *value, t_config *config)
 		config->nbr_instru += 1;
 		result = trim_newline_get_only_value(value);
 		if (result && *result == 0)
-			external_error("Invalid value was given", EXIT_FAILURE, &result);
+		{
+			free(result);
+			external_error("Invalide value was given", EXIT_FAILURE, NULL);
+		}
 		return (result);
 	}
 	else

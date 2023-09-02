@@ -1,9 +1,11 @@
-SO  ./Mandatory/parssing/src/wall1.xpm
+SO          ./Mandatory/parssing/src/wall2.xpm
 NO  ./Mandatory/parssing/src/wall2.xpm
 EA  ./Mandatory/parssing/src/wall3.xpm
 WE  ./Mandatory/parssing/src/wall4.xpm
-C 69, 179, 224
+
+C 55,69, 179
 F  148, 118, 90
+
 1111111111111111111111111     
 1000000000000000000000001
 1000000000000000E00000001

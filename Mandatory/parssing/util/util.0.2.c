@@ -104,5 +104,5 @@ void	initiate_textures_with_null(t_config *config)
 	config->player.direction = 0;
 	config->mlx = mlx_init();
 	if (!config->mlx)
-		external_error("init mlx", EXIT_FAILURE, config->mlx);
+		external_error("init mlx", EXIT_FAILURE, NULL);
 }

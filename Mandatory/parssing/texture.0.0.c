@@ -27,6 +27,8 @@ static int	valid_extension(char *file_name, char *extension)
 			return (0);
 		i--;
 	}
+	if (file_name[len - 1] == '/')
+		return (0);
 	return (1);
 }
 
@@ -62,7 +64,7 @@ static int	open_config_file(char *file_name)
 	int	fd;
 
 	if (!valid_extension(file_name, ".cub"))
-		external_error("extention must be .cub at the end", EXIT_FAILURE, NULL);
+		external_error("Incorrect format of filename", EXIT_FAILURE, NULL);
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
 		external_error("No such file or directory", EXIT_FAILURE, NULL);
