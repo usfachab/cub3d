@@ -101,5 +101,7 @@ char	*store_texture(char *path, char *value, t_config *config)
 	}
 	else
 		external_error("Duplicate option", EXIT_FAILURE, NULL);
+	if (config->nbr_instru > 6)
+		external_error("Duplicate option", EXIT_FAILURE, NULL);
 	return (result);
 }

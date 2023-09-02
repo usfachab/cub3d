@@ -6,7 +6,7 @@
 /*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:39:49 by ysabr             #+#    #+#             */
-/*   Updated: 2023/08/31 10:59:58 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/08/31 14:54:17 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	key_hook(int keycode, void *param)
 
 	config = (t_config *)param;
 	if (keycode == 65307)
-		exit(0);
+		free_config_resources(config);
 	if (keycode == 115)
 		move_player(&config->player,
 			&config->map, config->player.direction + M_PI);

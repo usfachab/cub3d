@@ -72,17 +72,3 @@ t_config	initialize_game(char *filename)
 	cleanup(&config);
 	return (config);
 }
-
-// int	main(int argc, char *argv[])
-// {
-// 	t_config	config;
-// 	(void)argc;
-// 	if (!parsing_texture(&config, argv[1]))
-// 		external_error("1", EXIT_FAILURE, NULL);
-// 	if (!parsing_map(&config))
-// 		external_error("2", EXIT_FAILURE, NULL);
-// 	if (!setup_texture(&config))
-// 		external_error("3", EXIT_FAILURE, NULL);
-// 	cleanup(&config);
-// 	return (0);
-// }

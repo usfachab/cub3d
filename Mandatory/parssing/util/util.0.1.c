@@ -39,11 +39,7 @@ char	*read_line(int fd)
 void	external_error(char *str, int errnum, char **ptr)
 {
 	printf("Error: %s\n", str);
-	while (ptr && *ptr)
-	{
-		free(*ptr);
-		ptr++;
-	}
+	freeall(ptr);
 	exit (errnum);
 }
 

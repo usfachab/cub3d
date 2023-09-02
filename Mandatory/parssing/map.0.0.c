@@ -20,7 +20,7 @@ int	valid_pos(t_config *config)
 
 	i = 0;
 	count = 0;
-	while (config->map.map[i])
+	while (config->map.map && config->map.map[i])
 	{
 		j = 0;
 		while (config->map.map[i][j])
@@ -47,6 +47,8 @@ int	valid_map(char **minimap)
 	int	y;
 
 	x = 0;
+	if (!minimap)
+		return (0);
 	while (minimap[x])
 	{
 		y = 0;
@@ -96,11 +98,11 @@ char	**creat_minimap(int fd)
 
 	map = read_line(fd);
 	if (!valid_elem(map))
-		external_error("Invalid map 0", EXIT_FAILURE, NULL);
+		external_error("Invalid param", EXIT_FAILURE, NULL);
 	split_config = ft_split(map, "\n");
 	free(map);
 	if (!split_config && !split_config[0])
-		external_error("Invalid map 1", EXIT_FAILURE, NULL);
+		external_error("Invalid map", EXIT_FAILURE, NULL);
 	minimap = re_allocate(split_config);
 	freeall(split_config);
 	return (minimap);
@@ -110,9 +112,9 @@ int	parsing_map(t_config *config)
 {
 	config->map.map = creat_minimap(config->fd);
 	if (!valid_pos(config))
-		external_error("Invalid map 2", EXIT_FAILURE, config->map.map);
+		external_error("Invalid map", EXIT_FAILURE, config->map.map);
 	if (!valid_map(config->map.map))
-		external_error("Invalid map 3", EXIT_FAILURE, config->map.map);
+		external_error("Invalid map", EXIT_FAILURE, config->map.map);
 	save_row_col_len(config);
 	return (1);
 }

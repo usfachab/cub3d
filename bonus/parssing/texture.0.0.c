@@ -35,7 +35,7 @@ static void	parse_texture(char *line, t_config *cf)
 	char	**parts;
 
 	parts = ft_split(line, " \t");
-	if (!parts || !parts[0] || !parts[1])
+	if (!parts || !parts[0])
 	{
 		freeall(parts);
 		return ;
