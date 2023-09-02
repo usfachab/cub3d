@@ -64,10 +64,8 @@ int	main(int argc, char *argv[])
 		return (EXIT_FAILURE);
 	mlx_put_image_to_window(config.mlx, config.mlx_win, config.img, 0, 0);
 	mlx_hook(config.mlx_win, 2, 1, key_hook, &config);
-	mlx_hook(config.mlx_win, 17, 0, exit_game, NULL);
+	mlx_hook(config.mlx_win, 17, 0, exit_game, &config);
 	mlx_put_image_to_window(config.mlx, config.mlx_win, config.img, 0, 0);
 	mlx_loop(config.mlx);
-	mlx_destroy_window(config.mlx, config.mlx_win);
-	freeall(config.map.map);
 	return (EXIT_SUCCESS);
 }

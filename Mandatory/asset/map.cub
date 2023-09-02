@@ -1,12 +1,11 @@
-SO	./Mandatory/parssing/src/Wall-Wood_01_L-128x128.xpm
-NO  ./Mandatory/parssing/src/Wall-Grass_01_L-128x128.xpm
-EA	./Mandatory/parssing/src/Wall-Stone_01_L-128x128.xpm
-WE	./Mandatory/parssing/src/Wall-Tile_01_R-128x128.xpm
+SO  ./Mandatory/parssing/src/wall1.xpm
+NO  ./Mandatory/parssing/src/wall2.xpm
+EA  ./Mandatory/parssing/src/wall3.xpm
+WE  ./Mandatory/parssing/src/wall4.xpm
 C 69, 179, 224
-F  148, 118, 90
 F  148, 118, 90
 1111111111111111111111111     
 1000000000000000000000001
-1000000000000000W00000001
+1000000000000000E00000001
 1000000000000000000000001     
 1111111111111111111111111

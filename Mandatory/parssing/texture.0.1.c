@@ -23,6 +23,8 @@ void	start_converting(int *arr, char *str, int *rgb)
 	while (value && value[i] && i < 3)
 	{
 		hold = ft_strtrim(value[i]);
+		if (ft_strlen(hold) > 3)
+			external_error("Invalid color schema", EXIT_FAILURE, value);
 		arr[i] = ft_atoi(hold);
 		free(hold);
 		if (arr[i] == -1)
@@ -96,7 +98,7 @@ char	*store_texture(char *path, char *value, t_config *config)
 		config->nbr_instru += 1;
 		result = trim_newline_get_only_value(value);
 		if (result && *result == 0)
-			external_error("Invalide value was given", EXIT_FAILURE, &result);
+			external_error("Invalid value was given", EXIT_FAILURE, &result);
 		return (result);
 	}
 	else

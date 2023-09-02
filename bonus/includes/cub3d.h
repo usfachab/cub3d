@@ -28,11 +28,11 @@
 # define HIGHT 1000
 # define WIDTH 1000
 # define CELL_SIZE 40
-# define MOVE_SPEED 10
+# define MOVE_SPEED 8
 # define PLAYER_SIZE 10
 # define FOV 1.0471975511965976
 # define TURN_ANGLE 0.05235987755982988
-# define MOUSE_SPEED 0.05
+# define MOUSE_SPEED 0.02
 # define WIDTH_MINIMAP 200
 # define HIGH_MINIMAP 200
 

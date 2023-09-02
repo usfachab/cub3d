@@ -1,14 +1,13 @@
-NO	./bonus/parssing/src/Wall-Grass_01_L-128x128.xpm
-SO	./bonus/parssing/src/Wall-Roofs_01_L-128x128.xpm
-EA	./bonus/parssing/src/Wall-Stone_01_L-128x128.xpm
-WE	./bonus/parssing/src/Wall-Tile_01_R-128x128.xpm
-SO
-C  	69, 179, 224
+SO  ./bonus/parssing/src/wall1.xpm
+NO  ./bonus/parssing/src/wall2.xpm
+EA  ./bonus/parssing/src/wall3.xpm
+WE  ./bonus/parssing/src/wall4.xpm
+C       69, 179, 224
 F	148, 118, 90
 
         1111111111111111111111111
         10000000D0000000000000001
-        1000000DDD000000N00000001
+        1000000DDD000000S00000001
         1111D11DD0000000000000001
         1000001000000000000100001
         1000001000000000000000001
