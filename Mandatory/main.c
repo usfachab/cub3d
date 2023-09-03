@@ -6,7 +6,7 @@
 /*   By: ysabr <ysabr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:36:38 by ysabr             #+#    #+#             */
-/*   Updated: 2023/09/03 09:11:57 by ysabr            ###   ########.fr       */
+/*   Updated: 2023/09/03 09:19:38 by ysabr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int	main(int argc, char *argv[])
 	config.player.y = config.player.y * CELL_SIZE + 20;
 	if (!initialize_graphics(&config))
 		return (EXIT_FAILURE);
-	mlx_put_image_to_window(config.mlx, config.mlx_win, config.img, 0, 0);
 	mlx_hook(config.mlx_win, 2, 1, key_hook, &config);
 	mlx_hook(config.mlx_win, 17, 0, exit_game, NULL);
 	render_rays(&config, &config.player);
