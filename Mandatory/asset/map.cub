@@ -1,7 +1,9 @@
-SO          ./Mandatory/parssing/src/wall2.xpm
-NO  ./Mandatory/parssing/src/wall2.xpm
-EA  ./Mandatory/parssing/src/wall3.xpm
-WE  ./Mandatory/parssing/src/wall4.xpm
+NO      ./Mandatory/parssing/src/Wall-Grass_01_L-128x128.xpm
+SO	./Mandatory/parssing/src/Wall-Roofs_01_L-128x128.xpm
+EA	./Mandatory/parssing/src/Wall-Stone_01_L-128x128.xpm
+WE	./Mandatory/parssing/src/Wall-Tile_01_R-128x128.xpm
+C  	69, 179, 224
+F	148, 118, 90
 
 C 55,69, 179
 F  148, 118, 90
