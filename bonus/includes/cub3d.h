@@ -243,4 +243,5 @@ void			init_ray(t_ray *ray, t_player *player, double angle);
 void			move_player(t_player *player, t_map *map, double direction);
 int				mouse_move(int x, int y, void *param);
 void			draw_minimap(t_config *config);
+void			freeanime(t_config *config);
 #endif

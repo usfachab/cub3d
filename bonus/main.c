@@ -40,7 +40,7 @@ int	loop_hook_mouse(t_config *config)
 
 int	initialize_graphics(t_config *config)
 {
-	config->mlx_win = mlx_new_window(config->mlx, WIDTH, HIGHT, "Hello World!");
+	config->mlx_win = mlx_new_window(config->mlx, WIDTH, HIGHT, "cub3D");
 	if (!config->mlx_win)
 		return (0);
 	config->img = mlx_new_image(config->mlx, WIDTH, HIGHT);
@@ -54,8 +54,22 @@ int	initialize_graphics(t_config *config)
 	return (1);
 }
 
+void	freeanime(t_config *config)
+{
+	int	i;
+
+	i = 0;
+	while (i < 6)
+	{
+		mlx_destroy_image(config->mlx, config->anime[i].img);
+		i++;
+	}
+	mlx_destroy_image(config->mlx, config->door.img);
+}
+
 int	exit_game(t_config *config)
 {
+	freeanime(config);
 	free_config_resources(config);
 	exit(1);
 }
@@ -65,7 +79,10 @@ int	main(int argc, char *argv[])
 	t_config	config;
 
 	if (argc != 2)
+	{
+		printf("too few argument\n");
 		return (EXIT_FAILURE);
+	}
 	config = initialize_game(argv[1]);
 	config.last_mouse_x = WIDTH / 2;
 	config.map.map[(int)config.player.y][(int)config.player.x] = '0';

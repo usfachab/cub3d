@@ -22,10 +22,14 @@ void	init_ray(t_ray *ray, t_player *player, double angle)
 
 int	initialize_graphics(t_config *config)
 {
-	config->mlx_win = mlx_new_window(config->mlx, WIDTH, HIGHT, "Hello World!");
+	int			sizex;
+	int			sizey;
+	
+	mlx_get_screen_size(config->mlx, &sizex, &sizey);
+	config->mlx_win = mlx_new_window(config->mlx, sizex, sizey, "cub3D");
 	if (!config->mlx_win)
 		return (0);
-	config->img = mlx_new_image(config->mlx, WIDTH, HIGHT);
+	config->img = mlx_new_image(config->mlx, sizex, sizey);
 	if (!config->img)
 		return (0);
 	config->data.addr = mlx_get_data_addr(config->img,
@@ -45,8 +49,14 @@ int	exit_game(t_config *config)
 void	free_config_resources(t_config *config)
 {
 	freeall(config->map.map);
+	mlx_destroy_image(config->mlx, config->nt.img);
+	mlx_destroy_image(config->mlx, config->st.img);
+	mlx_destroy_image(config->mlx, config->et.img);
+	mlx_destroy_image(config->mlx, config->wt.img);
 	mlx_destroy_image(config->mlx, config->img);
+	mlx_clear_window(config->mlx, config->mlx_win);
 	mlx_destroy_window(config->mlx, config->mlx_win);
+	mlx_destroy_display(config->mlx);
 	free(config->mlx);
 	exit(EXIT_SUCCESS);
 }
@@ -56,10 +66,14 @@ int	main(int argc, char *argv[])
 	t_config	config;
 
 	if (argc != 2)
+	{
+		printf("too few argument\n");
 		return (EXIT_FAILURE);
+	}
 	config = initialize_game(argv[1]);
 	config.player.x = config.player.x * CELL_SIZE + 20;
 	config.player.y = config.player.y * CELL_SIZE + 20;
+	
 	if (!initialize_graphics(&config))
 		return (EXIT_FAILURE);
 	mlx_hook(config.mlx_win, 2, 1, key_hook, &config);

@@ -41,8 +41,14 @@ t_config	initialize_game(char *filename)
 void	free_config_resources(t_config *config)
 {
 	freeall(config->map.map);
+	mlx_destroy_image(config->mlx, config->nt.img);
+	mlx_destroy_image(config->mlx, config->st.img);
+	mlx_destroy_image(config->mlx, config->et.img);
+	mlx_destroy_image(config->mlx, config->wt.img);
 	mlx_destroy_image(config->mlx, config->img);
+	mlx_clear_window(config->mlx, config->mlx_win);
 	mlx_destroy_window(config->mlx, config->mlx_win);
+	mlx_destroy_display(config->mlx);
 	free(config->mlx);
 	exit(EXIT_SUCCESS);
 }
