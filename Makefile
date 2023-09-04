@@ -53,7 +53,7 @@ $(BONUS) : $(OBJ_BON)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 git : 
-	make fclean && git add . && git commit -m "FREE ALL IMG TEX | CHNAGE WINDOW NAME" && git push origin master
+	make fclean && git add . && git commit -m "FREE ALL IMG TEX | CHNAGE WINDOW NAME | NORM -> NOK" && git push origin master
 
 clean :
 	@rm -fr $(OBJ_PAR) $(OBJ_REN) $(OBJ_BON)
