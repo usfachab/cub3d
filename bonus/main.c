@@ -54,22 +54,8 @@ int	initialize_graphics(t_config *config)
 	return (1);
 }
 
-void	freeanime(t_config *config)
-{
-	int	i;
-
-	i = 0;
-	while (i < 6)
-	{
-		mlx_destroy_image(config->mlx, config->anime[i].img);
-		i++;
-	}
-	mlx_destroy_image(config->mlx, config->door.img);
-}
-
 int	exit_game(t_config *config)
 {
-	freeanime(config);
 	free_config_resources(config);
 	exit(1);
 }

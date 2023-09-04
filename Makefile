@@ -8,7 +8,7 @@ MLX_DIR		=	/nfs/homes/yachaab/Desktop/minilibx
 
 MLX_LIB		=	-L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 
-CFLAGS		= 	-Werror -Wall -Wextra -g3 -fsanitize=address
+CFLAGS		= 	-Werror -Wall -Wextra #-g3 -fsanitize=address
 
 SRC_PAR		=	parse.c texture.0.0.c texture.0.1.c map.0.0.c map.0.1.c \
 				util/ft_split.c util/util.0.0.c util/util.0.1.c util/util.0.2.c
@@ -53,7 +53,7 @@ $(BONUS) : $(OBJ_BON)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 git : 
-	make fclean && git add . && git commit -m "FREE ALL IMG TEX | CHNAGE WINDOW NAME | NORM -> NOK" && git push origin master
+	make fclean && git add . && git commit -m "NORM -> OK | READY TO PUSH" && git push origin master
 
 clean :
 	@rm -fr $(OBJ_PAR) $(OBJ_REN) $(OBJ_BON)

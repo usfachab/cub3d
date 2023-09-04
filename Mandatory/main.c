@@ -24,7 +24,7 @@ int	initialize_graphics(t_config *config)
 {
 	int			sizex;
 	int			sizey;
-	
+
 	mlx_get_screen_size(config->mlx, &sizex, &sizey);
 	config->mlx_win = mlx_new_window(config->mlx, sizex, sizey, "cub3D");
 	if (!config->mlx_win)
@@ -73,7 +73,6 @@ int	main(int argc, char *argv[])
 	config = initialize_game(argv[1]);
 	config.player.x = config.player.x * CELL_SIZE + 20;
 	config.player.y = config.player.y * CELL_SIZE + 20;
-	
 	if (!initialize_graphics(&config))
 		return (EXIT_FAILURE);
 	mlx_hook(config.mlx_win, 2, 1, key_hook, &config);

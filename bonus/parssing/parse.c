@@ -38,9 +38,23 @@ t_config	initialize_game(char *filename)
 	return (config);
 }
 
+void	freeanime(t_config *config)
+{
+	int	i;
+
+	i = 0;
+	while (i < 6)
+	{
+		mlx_destroy_image(config->mlx, config->anime[i].img);
+		i++;
+	}
+	mlx_destroy_image(config->mlx, config->door.img);
+}
+
 void	free_config_resources(t_config *config)
 {
 	freeall(config->map.map);
+	freeanime(config);
 	mlx_destroy_image(config->mlx, config->nt.img);
 	mlx_destroy_image(config->mlx, config->st.img);
 	mlx_destroy_image(config->mlx, config->et.img);

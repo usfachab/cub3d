@@ -42,10 +42,7 @@ int	key_hook(int keycode, void *param)
 
 	config = (t_config *)param;
 	if (keycode == 65307)
-	{
-		freeanime(config);
 		free_config_resources(config);
-	}
 	if (keycode == 115)
 		move_player(&config->player,
 			&config->map, config->player.direction + M_PI);
