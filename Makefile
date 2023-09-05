@@ -12,7 +12,7 @@ CFLAGS		= 	-Werror -Wall -Wextra #-g3 -fsanitize=address
 
 SRC_PAR		=	parse.c texture.0.0.c texture.0.1.c map.0.0.c map.0.1.c \
 				util/ft_split.c util/util.0.0.c util/util.0.1.c util/util.0.2.c
-			
+
 
 SRC_REN		= 	main.c rendering/find_intersections.c \
 				rendering/intersection_updates.c \
@@ -52,8 +52,8 @@ $(BONUS) : $(OBJ_BON)
 %.o : %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-git : 
-	make fclean && git add . && git commit -m "NORM -> OK | READY TO PUSH" && git push origin master
+git :
+	make fclean && git add . && git commit -m "NORM -> OK | READY TO PUSH | COLOR SCHEMA -> FIXED" && git push origin master
 
 clean :
 	@rm -fr $(OBJ_PAR) $(OBJ_REN) $(OBJ_BON)

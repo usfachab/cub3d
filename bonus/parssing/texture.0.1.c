@@ -23,6 +23,8 @@ void	start_converting(int *arr, char *str, int *rgb)
 	while (value && value[i] && i < 3)
 	{
 		hold = ft_strtrim(value[i]);
+		if (!hold[0])
+			external_error("Invalid color schema", EXIT_FAILURE, value);
 		if (ft_strlen(hold) > 3)
 			external_error("Invalid color schema", EXIT_FAILURE, value);
 		arr[i] = ft_atoi(hold);
